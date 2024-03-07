@@ -84,7 +84,7 @@
   }
 }
 
-@media screen and (max-width: 536px) {
+@media screen and (max-width: 581px) {
   .profile {
     display: flex;
     flex-direction: column;
@@ -121,7 +121,7 @@
   }
 }
 
-@media screen and (min-width: 537px) and (max-width: 880px) {
+@media screen and (min-width: 581px) and (max-width: 880px) {
   .profile__image {
     margin-left: 30px;
   }
