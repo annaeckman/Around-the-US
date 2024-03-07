@@ -43,7 +43,7 @@
 
 .profile__name {
   margin: 0;
-  font-family: "Inter";
+  font-family: "Inter", "Times New Roman", serif;
   font-size: 42px;
   line-height: 48px;
   font-weight: 500;
@@ -57,7 +57,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
-  font-family: "Inter";
+  font-family: "Inter", "Times New Roman", serif;
 }
 
 .profile__add-button {

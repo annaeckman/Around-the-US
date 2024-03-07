@@ -11,11 +11,12 @@
 
 ### Project Description
 
-This is a website featuring pictures of breathtaking places around the U.S. It is compatible on all screen sizes and was created with a Figma file specifying a layout for both Desktop and Mobile screens.
+This project is made so all elements are displayed correctly on popular screen sizes.
 
 - Semantic HTML5
 - Flexbox
 - Grid
+- Vectors, fonts, user interfaces
 - Responsive design principles
 
 ### Figma
@@ -24,6 +25,7 @@ This is a website featuring pictures of breathtaking places around the U.S. It i
 
 ### Screenshots/Video
 
+[link to video showcasing project and its features]()
 ![Alt text](image.png)
 ![Alt text](image-2.png)
 ![Alt text](image-1.png)
@@ -33,3 +35,5 @@ This is a website featuring pictures of breathtaking places around the U.S. It i
 - HTML5, CSS, BEM
 
 ### Published Link
+
+[link to project](http://annaeckman.github.io/se_project_aroundtheus)
