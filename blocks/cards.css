@@ -1,0 +1,74 @@
+.cards {
+  padding-top: 100px;
+}
+
+.card__list {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
+  justify-content: center;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 282px;
+  height: 361px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card__text {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 20px;
+}
+
+.card__title {
+  color: black;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Inter";
+  max-width: 193px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.card__image {
+  height: 282px;
+  width: 282px;
+}
+
+.card__heart-button {
+  height: 21px;
+  width: 18px;
+  justify-content: flex-end;
+  align-self: center;
+  background: transparent url("../images/heart.svg") no-repeat;
+  background-size: 18px 21px;
+  border: none;
+  margin: 0 20px 0;
+  padding: none;
+  transition: opacity 0.35s;
+  flex-shrink: 0;
+}
+
+.card__heart-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 536px) {
+  .cards {
+    padding-top: 36px;
+  }
+}

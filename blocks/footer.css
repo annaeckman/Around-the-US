@@ -1,0 +1,35 @@
+.footer {
+  color: #545454;
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+  margin: 67px auto 0;
+}
+
+.footer__content {
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  margin-bottom: 60px;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 536px) {
+  .footer__content {
+    margin-bottom: 36px;
+    margin-left: 16px;
+    margin-top: 48px;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

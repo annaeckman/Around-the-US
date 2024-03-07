@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  margin-top: 40px;
+  border-bottom: solid 1px #545454;
+}
+
+.header__image {
+  width: 173px;
+  height: 33px;
+  margin-bottom: 41px;
+}
+
+.header__line {
+}
+
+@media screen and (max-width: 530px) {
+  .header__image {
+    height: 24px;
+    width: 126px;
+    margin-left: 27px;
+  }
+}
+
+@media screen and (min-width: 537px) and (max-width: 880px) {
+  .header__image {
+    margin-left: 30px;
+  }
+}
