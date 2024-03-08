@@ -25,7 +25,8 @@ This project is made so all elements are displayed correctly on popular screen s
 
 ### Screenshots/Video
 
-[link to video showcasing project and its features]()
+[link to video showcasing project and its features](https://app.screencastify.com/v3/watch/3Q98zsOgCdiIiLrWiSqh)
+
 ![Alt text](./images/image.png)
 ![Alt text](./images/image-2.png)
 ![Alt text](./images/image-1.png)
