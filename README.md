@@ -26,9 +26,9 @@ This project is made so all elements are displayed correctly on popular screen s
 ### Screenshots/Video
 
 [link to video showcasing project and its features]()
-![Alt text](image.png)
-![Alt text](image-2.png)
-![Alt text](image-1.png)
+![Alt text](./images/image.png)
+![Alt text](./images/image-2.png)
+![Alt text](./images/image-1.png)
 
 ### Technologies Used
 

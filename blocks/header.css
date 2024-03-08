@@ -1,7 +1,7 @@
 .header {
   display: flex;
   margin-top: 40px;
-  border-bottom: solid 1px #545454;
+  border-bottom: solid 1px rgba(84, 84, 84, 1);
 }
 
 .header__image {
@@ -10,10 +10,12 @@
   margin-bottom: 41px;
 }
 
-.header__line {
-}
-
 @media screen and (max-width: 530px) {
+  .header {
+    margin-top: 28px;
+    max-height: 84px;
+  }
+
   .header__image {
     height: 24px;
     width: 126px;

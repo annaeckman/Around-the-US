@@ -3,14 +3,10 @@
   max-width: 880px;
   width: 100%;
   position: relative;
-  margin: 67px auto 0;
-}
-
-.footer__content {
+  margin: 67px auto 60px;
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
-  margin-bottom: 60px;
 }
 
 .footer__copyright {
@@ -22,7 +18,7 @@
 }
 
 @media screen and (max-width: 536px) {
-  .footer__content {
+  .footer {
     margin-bottom: 36px;
     margin-left: 16px;
     margin-top: 48px;
