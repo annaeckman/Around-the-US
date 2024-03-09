@@ -51,7 +51,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 380px;
+  max-width: 370px;
 }
 
 .profile__subtitle {
@@ -64,6 +64,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 320px;
 }
 
 .profile__add-button_inactive {
@@ -116,6 +117,7 @@
     font-size: 22px;
     line-height: 27px;
     align-content: center;
+    max-width: 230px;
   }
 
   .profile__subtitle {
@@ -123,6 +125,7 @@
     line-height: 17px;
     align-content: center;
     justify-self: center;
+    max-width: 230px;
   }
 }
 
@@ -138,6 +141,10 @@
 @media screen and (min-width: 522px) and (max-width: 800px) {
   .profile__name {
     font-size: 30px;
+    max-width: 220px;
+  }
+
+  .profile__subtitle {
     max-width: 220px;
   }
 
