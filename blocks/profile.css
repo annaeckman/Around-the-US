@@ -83,6 +83,7 @@
 
 @media screen and (max-width: 581px) {
   .profile {
+    max-width: 320px;
     flex-direction: column;
   }
 
@@ -94,6 +95,8 @@
 
   .profile__edit-button {
     justify-self: flex-start;
+    width: 18px;
+    height: 18px;
   }
 
   .profile__add-button {
@@ -126,5 +129,10 @@
 
   .profile__add-button {
     margin-right: 30px;
+  }
+}
+@media screen and (min-width: 522px) and (max-width: 800px) {
+  .profile__info {
+    grid-template-columns: minmax(auto, 200px) minmax(auto, 42px);
   }
 }
