@@ -19,10 +19,9 @@
 
 @media screen and (max-width: 536px) {
   .footer {
-    margin-bottom: 36px;
-    padding-left: 16px;
+    max-width: 275px;
     margin-top: 48px;
-    max-width: 320px;
+    margin-bottom: 31px;
   }
 
   .footer__copyright {
