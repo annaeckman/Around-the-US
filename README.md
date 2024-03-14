@@ -2,12 +2,16 @@
 
 ## Overview
 
-- Project Description and features
-- Figma
-- Screenshots/Video
-- Technology Used
+- Published Link
 
-* Published Link
+* Project Description and features
+* Figma
+* Screenshots/Video
+* Technology Used
+
+### Published Link
+
+[link to project](http://annaeckman.github.io/se_project_aroundtheus)
 
 ### Project Description
 
@@ -34,7 +38,3 @@ This project is made so all elements are displayed correctly on popular screen s
 ### Technologies Used
 
 - HTML5, CSS, BEM
-
-### Published Link
-
-[link to project](http://annaeckman.github.io/se_project_aroundtheus)
