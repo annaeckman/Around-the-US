@@ -29,41 +29,37 @@ const initialCards = [
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditModal = document.querySelector(".modal");
+const profileCloseButton = document.querySelector(".modal__close");
+const nameInput = document.querySelector(".modal__name");
+const jobInput = document.querySelector(".modal__subtitle");
+const profileName = document.querySelector(".profile__name");
+const profileJob = document.querySelector(".profile__subtitle");
 
+const profileEditForm = profileEditModal.querySelector(".modal__form");
+
+// modal open and close buttons replacing input values with current name value
 profileEditButton.addEventListener("click", function () {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
   profileEditModal.classList.add("modal_opened");
 });
-
-const profileCloseButton = document.querySelector(".modal__close");
 
 profileCloseButton.addEventListener("click", function () {
   profileEditModal.classList.remove("modal_opened");
 });
 
-// find the form in the DOM
-const profileFormElement = document.querySelector(".modal__form");
-
-// find the form fields in the DOM
-const nameInput = document.querySelector(".modal__name");
-const jobInput = document.querySelector(".modal__subtitle");
-
-// find the profile elements in the DOM
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__subtitle");
-
-// the form submission handler. Note that its name
-// starts with a verb and concisely describes what it does
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  // get the values of each field from the value property
-  // of the corresponding input element
-
-  // insert new values into the textContent property of the
-  // corresponding profile elements
 }
 
-// connect the handler to the form:
-// it will watch the submit event
-formElement.addEventListener("submit", handleProfileFormSubmit);
+profileEditForm.addEventListener("submit", handleProfileFormSubmit);
+
+// another way?:
+// profileEditForm.addEventListener("submit", function (e) {
+//   e.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileJob.textContent = jobInput.value;
+//   profileEditModal.classList.remove("modal_opened");
+// });

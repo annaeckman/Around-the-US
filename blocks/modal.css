@@ -50,6 +50,8 @@
 }
 
 .modal__form {
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__name {
@@ -78,6 +80,12 @@
   font-weight: 400;
   border-radius: 2px;
   padding: 0;
+  transition: opacity 0.35s;
+}
+
+.modal__submit-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 630px) {
