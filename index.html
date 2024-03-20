@@ -43,98 +43,7 @@
           ></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-            <li class="card">
-              <img
-                src="./images/yosemite-valley.jpg"
-                alt="view from river in yosemite valley looking at El Capitan"
-                class="card__image"
-              />
-              <div class="card__text">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button
-                  aria-label="like button"
-                  type="button"
-                  class="card__heart-button"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lake-louise.png"
-                alt="lake with two moutain peaks on either side"
-                class="card__image"
-              />
-              <div class="card__text">
-                <h2 class="card__title">Lake Louise</h2>
-                <button
-                  aria-label="like button"
-                  type="button"
-                  class="card__heart-button"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/bald-mountains.png"
-                alt="sun setting behind vast view of many mountains"
-                class="card__image"
-              />
-              <div class="card__text">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button
-                  aria-label="like button"
-                  type="button"
-                  class="card__heart-button"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/latemar.png"
-                alt="night sky full of stars with craggly, snowy mountain peak"
-                class="card__image"
-              />
-              <div class="card__text">
-                <h2 class="card__title">Latemar</h2>
-                <button
-                  aria-label="like button"
-                  type="button"
-                  class="card__heart-button"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/vanoise-national-park.png"
-                alt="shore of lake with snowy mountain in background"
-                class="card__image"
-              />
-              <div class="card__text">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button
-                  aria-label="like button"
-                  type="button"
-                  class="card__heart-button"
-                ></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lago-di-braies.png"
-                alt="dock with several paddle boats in alpine lake"
-                class="card__image"
-              />
-              <div class="card__text">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button
-                  aria-label="like button"
-                  type="button"
-                  class="card__heart-button"
-                ></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
     </div>
@@ -153,6 +62,19 @@
         </form>
       </div>
     </div>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <div class="card__text">
+          <h2 class="card__title"></h2>
+          <button
+            aria-label="like button"
+            type="button"
+            class="card__heart-button"
+          ></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

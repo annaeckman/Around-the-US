@@ -34,10 +34,30 @@ const nameInput = document.querySelector(".modal__name");
 const jobInput = document.querySelector(".modal__subtitle");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__subtitle");
-
 const profileEditForm = profileEditModal.querySelector(".modal__form");
+const cardListEl = document.querySelector(".cards__list");
+const cardTemplate = document.querySelector("#card-template");
+const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-// modal open and close buttons replacing input values with current name value
+//Functions:
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+}
+
+function getCardElement(data) {}
+
+initialCards.forEach((cardData) => {
+  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  cardTitleEl.textContent = cardData.name;
+  // return cardElement;
+  cardListEl.prepend(cardElement);
+});
+
+//Event Listeners:
+
 profileEditButton.addEventListener("click", function () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -48,18 +68,4 @@ profileCloseButton.addEventListener("click", function () {
   profileEditModal.classList.remove("modal_opened");
 });
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-}
-
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-
-// another way?:
-// profileEditForm.addEventListener("submit", function (e) {
-//   e.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileJob.textContent = jobInput.value;
-//   profileEditModal.classList.remove("modal_opened");
-// });
