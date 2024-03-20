@@ -36,8 +36,8 @@ const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__subtitle");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
-const cardTemplate = document.querySelector("#card-template");
-const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
 
 //Functions:
 function handleProfileFormSubmit(evt) {
@@ -46,13 +46,20 @@ function handleProfileFormSubmit(evt) {
   profileJob.textContent = jobInput.value;
 }
 
-function getCardElement(data) {}
-
-initialCards.forEach((cardData) => {
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardImageAltEl = cardElement.querySelector(".card__image");
+
+  cardImageEl.src = cardData.link;
   cardTitleEl.textContent = cardData.name;
-  // return cardElement;
+  cardImageAltEl.content = cardData.name;
+  return cardElement;
+}
+
+initialCards.forEach((cardData) => {
+  const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
 });
 
