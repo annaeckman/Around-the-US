@@ -30,31 +30,36 @@ const initialCards = [
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditModal = document.querySelector(".modal");
 const profileCloseButton = document.querySelector(".modal__close");
-const nameInput = document.querySelector(".modal__name");
-const jobInput = document.querySelector(".modal__subtitle");
+const nameInput = document.querySelector(".modal__input-name");
+const jobInput = document.querySelector(".modal__input-job");
 const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__subtitle");
+const profileJob = document.querySelector(".profile__job");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 //Functions:
+
+function closePopup() {
+  profileEditModal.classList.remove("modal_opened");
+}
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
+  closePopup();
 }
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
-  const cardImageAltEl = cardElement.querySelector(".card__image");
 
   cardImageEl.src = cardData.link;
   cardTitleEl.textContent = cardData.name;
-  cardImageAltEl.content = cardData.name;
+  cardImageEl.alt = cardData.name;
   return cardElement;
 }
 

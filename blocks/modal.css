@@ -54,19 +54,27 @@
   flex-direction: column;
 }
 
-.modal__name {
+.modal__input-name {
   border-radius: 1px;
   border-top: #fff;
   border-right: #fff;
   border-left: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 30px;
+  font-style: "Inter", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
-.modal__subtitle {
+.modal__input-job {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 48px;
+  font-style: "Inter", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .modal__submit-button {
@@ -111,11 +119,11 @@
     padding: 0 0 75px;
   }
 
-  .modal__name {
+  .modal__input-name {
     font-size: 14px;
   }
 
-  .modal__subtitle {
+  .modal__input-job {
     font-size: 14px;
     margin-bottom: 45px;
   }
