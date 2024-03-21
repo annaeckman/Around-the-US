@@ -77,7 +77,7 @@ profileEditButton.addEventListener("click", function () {
 });
 
 profileCloseButton.addEventListener("click", function () {
-  profileEditModal.classList.remove("modal_opened");
+  closePopup();
 });
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);

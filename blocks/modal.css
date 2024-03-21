@@ -7,6 +7,7 @@
   display: none;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
+  font-family: "Inter", "Times New Roman", Serif;
 }
 
 .modal_opened {
@@ -25,7 +26,6 @@
 }
 
 .modal__heading {
-  font-style: "Inter", "Times New Roman", Serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
@@ -61,7 +61,6 @@
   border-left: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 30px;
-  font-style: "Inter", "Times New Roman", serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -71,7 +70,6 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 48px;
-  font-style: "Inter", "Times New Roman", serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -82,7 +80,6 @@
   width: 358px;
   background-color: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
-  font-family: "Inter", "Times New Roman", Serif;
   font-size: 18px;
   line-height: 1.2;
   font-weight: 400;
