@@ -54,7 +54,7 @@
   flex-direction: column;
 }
 
-.modal__input-name {
+/* .modal__input-name {
   border-radius: 1px;
   border-top: #fff;
   border-right: #fff;
@@ -73,6 +73,24 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+} */
+
+.modal__input {
+  border-radius: 1px;
+  border-top: #fff;
+  border-right: #fff;
+  border-left: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.modal__input:last-of-type {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 48px;
 }
 
 .modal__submit-button {

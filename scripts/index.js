@@ -30,8 +30,8 @@ const initialCards = [
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditModal = document.querySelector(".modal");
 const profileCloseButton = document.querySelector(".modal__close");
-const nameInput = document.querySelector(".modal__input-name");
-const jobInput = document.querySelector(".modal__input-job");
+const nameInput = document.querySelector("[name='name'");
+const jobInput = document.querySelector("[name='subtitle']");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
