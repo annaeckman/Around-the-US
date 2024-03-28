@@ -47,6 +47,12 @@
   background-repeat: no-repeat;
   background-size: contain;
   padding: 0;
+  transition: opacity 0.35s;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .modal__form {
