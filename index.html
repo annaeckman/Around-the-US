@@ -50,6 +50,7 @@
     <footer class="footer page__section">
       <p class="footer__copyright">&copy;2024 Around The U.S.</p>
     </footer>
+
     <!-- Edit Modal -->
     <div class="modal" id="edit-modal">
       <div class="modal__container">
@@ -96,9 +97,24 @@
       </div>
     </div>
 
+    <!-- Preview Image Modal -->
+
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__image-container">
+        <button class="modal__close" id="preview-image-close-button"></button>
+        <img src="" alt="" class="modal__image-preview" />
+      </div>
+    </div>
+
+    <!-- Card Template -->
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
+        <button
+          aria-label="delete button"
+          type="button"
+          class="card__delete-button"
+        ></button>
         <div class="card__text">
           <h2 class="card__title"></h2>
           <button

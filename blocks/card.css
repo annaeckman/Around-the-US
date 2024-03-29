@@ -4,6 +4,7 @@
   width: 282px;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .card__text {
@@ -31,6 +32,19 @@
 .card__image {
   height: 282px;
   width: 282px;
+  z-index: 0;
+}
+
+.card__delete-button {
+  background: transparent url("../images/delete-icon.svg") no-repeat;
+  height: 19.3px;
+  width: 18px;
+  background-size: 18px 19.3px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  z-index: 1;
+  border: none;
 }
 
 .card__heart-button {
@@ -50,4 +64,9 @@
 .card__heart-button:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+.card__heart-button_clicked {
+  background: transparent url("../images/heart-clicked.svg") no-repeat;
+  background-size: 18px 21px;
 }

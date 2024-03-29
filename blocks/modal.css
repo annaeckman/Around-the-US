@@ -96,6 +96,13 @@
   cursor: pointer;
 }
 
+.modal__image-container {
+  margin: 90px auto;
+}
+
+.modal__image-preview {
+}
+
 @media screen and (max-width: 630px) {
   .modal {
     align-items: baseline;
