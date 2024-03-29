@@ -99,10 +99,13 @@
 .modal__image-container {
   position: relative;
   margin: 90px auto;
+  max-height: 75vh;
+  max-width: 75vw;
 }
 
 .modal__image-preview {
-  max-height: calc(100% - 90px);
+  max-height: 100%;
+  max-width: 100%;
 }
 
 @media screen and (max-width: 630px) {

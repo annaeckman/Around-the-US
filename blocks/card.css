@@ -60,7 +60,7 @@
   flex-shrink: 0;
 }
 
-.card__heart-button:hover {
+.card__heart-button:not(.card__heart-button_clicked):hover {
   opacity: 0.5;
   cursor: pointer;
 }
