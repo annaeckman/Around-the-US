@@ -84,9 +84,12 @@
   margin-bottom: 48px;
 }
 
+.modal__form {
+  width: 358px;
+}
+
 .modal__submit-button {
   height: 50px;
-  width: 358px;
   background-color: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
   font-size: 18px;
@@ -130,6 +133,10 @@
   .modal__container {
     padding: 25px 22px;
     margin: 123px 19px;
+  }
+
+  .modal__form {
+    width: 260px;
   }
 
   .modal__close {
