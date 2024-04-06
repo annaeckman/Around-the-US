@@ -46,8 +46,8 @@ function checkInputValidity(formElement, inputElement, options) {
 
 function toggleButtonState(
   inputElements,
-  submitButton,
-  { inactiveButtonClass }
+  submitButton
+  // { inactiveButtonClass }
 ) {
   let foundInvalid = false;
 
@@ -58,10 +58,10 @@ function toggleButtonState(
   });
 
   if (foundInvalid) {
-    submitButton.classList.add(inactiveButtonClass);
+    submitButton.classList.add("modal__submit-button_disabled");
     submitButton.disabled = true;
   } else {
-    submitButton.classList.remove(inactiveButtonClass);
+    submitButton.classList.remove("modal__submit-button_disabled");
     submitButton.disabled = false;
   }
 }
