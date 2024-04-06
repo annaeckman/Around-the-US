@@ -59,16 +59,26 @@
         <form class="modal__form" id="edit-profile-modal">
           <input
             name="name"
+            id="name"
             type="text"
             placeholder="Name"
             class="modal__input"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span class="modal__error" id="name-error"></span>
           <input
             name="job"
+            id="job"
             type="text"
             placeholder="Job Description"
             class="modal__input"
+            minlength="2"
+            maxlength="200"
+            required
           />
+          <span class="modal__error" id="job-error"></span>
           <button type="submit" class="modal__submit-button">Save</button>
         </form>
       </div>
@@ -85,6 +95,8 @@
             type="text"
             placeholder="Title"
             class="modal__input"
+            minlength="1"
+            maxlength="30"
             required
           />
           <input
@@ -129,5 +141,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
