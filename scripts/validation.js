@@ -68,7 +68,7 @@ function toggleButtonState(
 
 function setEventListeners(formElement, options) {
   const { inputSelector } = options;
-  //these two lines are the same (object destructuring?!)
+  //these two lines are the same (called object destructuring)
   // const inputSelector = options.inputSelector
   const inputElements = Array.from(
     formElement.querySelectorAll(options.inputSelector)
