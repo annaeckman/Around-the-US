@@ -135,6 +135,17 @@ initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 //Event Listeners:
 
+//close modal by clicking outside the overlay...
+//listen on the document for a click anywhere except the modal...
+//if it hears a click run closeModal() function.
+
+// document.addEventListener("click", (evt) => {
+//   const modalDiv = document.querySelector(".modal");
+//   if (evt.target != modalDiv) {
+//     closeModal(modalDiv);
+//   }
+// });
+
 profileEditButton.addEventListener("click", openEditProfileModal);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);

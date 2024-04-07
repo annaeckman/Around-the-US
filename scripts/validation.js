@@ -38,32 +38,36 @@ function hideInputError(
 
 function checkInputValidity(formElement, inputElement, options) {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, options);
-  } else {
-    hideInputError(formElement, inputElement, options);
+    return showInputError(formElement, inputElement, options);
   }
+
+  hideInputError(formElement, inputElement, options);
+}
+
+function hasInvalidInput(inputList) {
+  return !inputList.every((inputElement) => inputElement.validity.valid);
+}
+
+function disableSubmitButton(submitButton) {
+  submitButton.classList.add("modal__submit-button_disabled");
+  submitButton.disabled = true;
+}
+
+function enableSubmitButton(submitButton) {
+  submitButton.classList.remove("modal__submit-button_disabled");
+  submitButton.disabled = false;
 }
 
 function toggleButtonState(
   inputElements,
   submitButton
-  // { inactiveButtonClass }
+  // { inactiveButtonClass } this instance of object destructuring doesn't work yet...
 ) {
-  let foundInvalid = false;
-
-  inputElements.forEach((inputElement) => {
-    if (!inputElement.validity.valid) {
-      foundInvalid = true;
-    }
-  });
-
-  if (foundInvalid) {
-    submitButton.classList.add("modal__submit-button_disabled");
-    submitButton.disabled = true;
-  } else {
-    submitButton.classList.remove("modal__submit-button_disabled");
-    submitButton.disabled = false;
+  if (hasInvalidInput(inputElements)) {
+    disableSubmitButton(submitButton);
+    return;
   }
+  enableSubmitButton(submitButton);
 }
 
 function setEventListeners(formElement, options) {
