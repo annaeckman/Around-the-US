@@ -138,16 +138,24 @@ initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 const openedModal = document.querySelector(".modal_opened");
 
 function closeModalOverlay(evt) {
+  const openedModal = document.querySelector(".modal_opened");
   if (evt.target === evt.currentTarget) {
     closeModal(openedModal);
   }
 }
 
 function closeModalEscape(evt) {
-  if (evt.target === "Escape") {
+  const openedModal = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
     closeModal(openedModal);
   }
 }
+// document.addEventListener("keydown", (evt) => {
+//   const openedModal = document.querySelector(".modal_opened");
+//   if (evt.key === "Escape") {
+//     closeModal(openedModal);
+//   }
+// });
 
 document.addEventListener("keydown", closeModalEscape);
 document.addEventListener("click", closeModalOverlay);
