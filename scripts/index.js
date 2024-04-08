@@ -69,6 +69,20 @@ function openModal(modal) {
   modal.addEventListener("mousedown", closeModalOverlay);
 }
 
+function closeModalOverlay(evt) {
+  const openedModal = document.querySelector(".modal_opened");
+  if (evt.target === evt.currentTarget) {
+    closeModal(openedModal);
+  }
+}
+
+function closeModalEscape(evt) {
+  const openedModal = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    closeModal(openedModal);
+  }
+}
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -131,20 +145,6 @@ function getCardElement(cardData) {
   });
 
   return cardElement;
-}
-
-function closeModalOverlay(evt) {
-  const openedModal = document.querySelector(".modal_opened");
-  if (evt.target === evt.currentTarget) {
-    closeModal(openedModal);
-  }
-}
-
-function closeModalEscape(evt) {
-  const openedModal = document.querySelector(".modal_opened");
-  if (evt.key === "Escape") {
-    closeModal(openedModal);
-  }
 }
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
