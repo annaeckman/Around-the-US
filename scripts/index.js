@@ -135,34 +135,22 @@ initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 //Event Listeners:
 
-//close modal by clicking outside the overlay:
-//if the modal is open...
-//listen on the document for a click not in modal container...
-//if it hears a click run closeModal() function.
+const openedModal = document.querySelector(".modal_opened");
 
-// if (profileEditForm.classList.contains("modal_opened"))
-//   const modalDiv = document.querySelector(".modal__container");
-//   if (openModal()) {
-//     document.addEventListener("click", (evt) => {
-//       if (evt.target != modalDiv) {
-//         closeModal(modal);
-//       }
-//     });
-//   }
-//
+function closeModalOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(openedModal);
+  }
+}
 
-//close modal by pressing escape:
-//if the modal is open...
-//listen for keydown function...
-//if the key is escape, run the closeModal function
+function closeModalEscape(evt) {
+  if (evt.target === "Escape") {
+    closeModal(openedModal);
+  }
+}
 
-// while (profileEditModal.classList.contains("modal_opened")) {
-//   // document.addEventListener("keydown", function (evt) {
-//   //   if (evt.key === "Enter") {
-//   console.log("I pressed the escape key!");
-// }
-// //   });
-// // }
+document.addEventListener("keydown", closeModalEscape);
+document.addEventListener("click", closeModalOverlay);
 
 profileEditButton.addEventListener("click", openEditProfileModal);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
