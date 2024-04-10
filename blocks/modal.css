@@ -125,14 +125,6 @@
   opacity: 0.2;
 }
 
-/* .modal__submit-button_disabled {
-
-} */
-
-/* .modal__submit-button_disabled:hover {
-  opacity: 0.2;
-} */
-
 .modal__image-container {
   position: relative;
   margin: 90px auto;
@@ -156,6 +148,7 @@
   .modal {
     align-items: baseline;
     justify-content: center;
+    max-width: 282px;
   }
 
   .modal__container {
@@ -191,7 +184,8 @@
   .modal__submit-button {
     font-size: 14px;
     height: 46px;
-    width: 238px;
+    width: 260px;
+    margin: 0 auto;
   }
 
   .modal__image-preview {
