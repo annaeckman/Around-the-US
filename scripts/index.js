@@ -100,7 +100,7 @@ function handleAddCardFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
-  clearCardModal();
+  clearCardForm();
 }
 
 function renderCard(cardData, wrapper) {
@@ -118,10 +118,8 @@ function openEditProfileModal() {
   openModal(profileEditModal);
 }
 
-function clearCardModal() {
-  addCardFormInputs.forEach((input) => {
-    input.value = "";
-  });
+function clearCardForm() {
+  addCardFormElement.reset();
 }
 
 function getCardElement(cardData) {
