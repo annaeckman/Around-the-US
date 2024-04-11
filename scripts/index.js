@@ -120,7 +120,7 @@ function openEditProfileModal() {
 
 function clearCardModal() {
   addCardFormInputs.forEach((input) => {
-    input.value = "";
+    input.reset();
   });
 }
 

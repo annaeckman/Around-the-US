@@ -144,20 +144,21 @@
   color: rgba(255, 255, 255, 1);
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 580px) {
   .modal {
     align-items: baseline;
     justify-content: center;
     max-width: 282px;
+    margin: 0 auto;
   }
 
   .modal__container {
     padding: 25px 22px;
-    margin: 123px 19px;
+    max-width: 240px;
   }
 
   .modal__form {
-    width: 260px;
+    width: 240px;
   }
 
   .modal__close {
@@ -184,7 +185,7 @@
   .modal__submit-button {
     font-size: 14px;
     height: 46px;
-    width: 260px;
+    width: 240px;
     margin: 0 auto;
   }
 
