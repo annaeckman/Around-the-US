@@ -1,3 +1,7 @@
+//sprint 7 project:
+//new index.js file
+//will import the classes from card.js and formValidator.js
+
 const initialCards = [
   {
     name: "Joshua Tree",
@@ -150,11 +154,27 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+function handleImageClick(this){
+  const modalImage = document.querySelector(".modal__image-preview");
+  modalImage.src = this._image.src;
+  modalImage.alt = `Photo of ${this._name}`;
+  previewSubtitle.textContent = this._name;
+  openModal(previewImageModal);
+}
 
-//Event Listeners:
+initialCards
+  .forEach((cardData) => {
+    const renderCard = new Card(
+      cardData,
+      "#card-template",
+      handleImageClick
+    );
+    cardListEl.prepend(renderCard.generateCard());
+  })
 
-profileEditButton.addEventListener("click", openEditProfileModal);
+  //Event Listeners:
+
+  .profileEditButton.addEventListener("click", openEditProfileModal);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
