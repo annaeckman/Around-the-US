@@ -79,7 +79,9 @@
             required
           />
           <span class="modal__error" id="job-error"></span>
-          <button type="submit" class="modal__submit-button">Save</button>
+          <button disabled type="submit" class="modal__submit-button">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -110,7 +112,9 @@
             required
           />
           <span class="modal__error" id="url-error"></span>
-          <button type="submit" class="modal__submit-button">Save</button>
+          <button disabled type="submit" class="modal__submit-button">
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -147,6 +151,8 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" defer></script>
+    <script type="module" src="./components/Card.js" defer></script>
+    <script type="module" src="./components/FormValidator.js" defer></script>
+    <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>

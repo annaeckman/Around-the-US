@@ -1,5 +1,5 @@
-import FormValidator from "../components/FormValidator"
-import Card from "../components/Card"
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -63,6 +63,26 @@ const nameInput = document.querySelector("[name='name'");
 const jobInput = document.querySelector("[name='job']");
 const cardTitleInput = addCardFormElement.querySelector("[name='title']");
 const cardUrlInput = addCardFormElement.querySelector("[name='url']");
+
+const options = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const profileFormValidator = new FormValidator(options, profileFormElement);
+profileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(options, addCardFormElement);
+addCardFormValidator.enableValidation();
+
+initialCards.forEach((cardData) => {
+  const renderCard = new Card(cardData, "#card-template", handleImageClick);
+  cardListEl.prepend(renderCard.generateCard());
+});
+
 //Functions:
 
 function closeModal(modal) {
@@ -118,27 +138,17 @@ function clearCardForm() {
   addCardFormElement.reset();
 }
 
-function handleImageClick(this){
+function handleImageClick(card) {
   const modalImage = document.querySelector(".modal__image-preview");
-  modalImage.src = this._image.src;
-  modalImage.alt = `Photo of ${this._name}`;
-  previewSubtitle.textContent = this._name;
+  modalImage.src = card._image.src;
+  modalImage.alt = `Photo of ${card._name}`;
+  previewSubtitle.textContent = card._name;
   openModal(previewImageModal);
 }
 
-initialCards
-  .forEach((cardData) => {
-    const renderCard = new Card(
-      cardData,
-      "#card-template",
-      handleImageClick
-    );
-    cardListEl.prepend(renderCard.generateCard());
-  })
+//Event Listeners:
 
-  //Event Listeners:
-
-  .profileEditButton.addEventListener("click", openEditProfileModal);
+profileEditButton.addEventListener("click", openEditProfileModal);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
