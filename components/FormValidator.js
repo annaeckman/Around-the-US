@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(config, formElement) {}
 
   //private methods for processing the form:

@@ -1,6 +1,5 @@
-//sprint 7 project:
-//new index.js file
-//will import the classes from card.js and formValidator.js
+import FormValidator from "../components/FormValidator"
+import Card from "../components/Card"
 
 const initialCards = [
   {
