@@ -105,11 +105,6 @@ function handleAddCardFormSubmit(evt) {
   clearCardForm();
 }
 
-function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
-}
-
 function fillProfileForm() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -122,36 +117,6 @@ function openEditProfileModal() {
 
 function clearCardForm() {
   addCardFormElement.reset();
-}
-
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  const cardLikeButton = cardElement.querySelector(".card__heart-button");
-  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  const modalImage = document.querySelector(".modal__image-preview");
-
-  cardImageEl.src = cardData.link;
-  cardTitleEl.textContent = cardData.name;
-  cardImageEl.alt = cardData.name;
-
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle("card__heart-button_clicked");
-  });
-
-  cardImageEl.addEventListener("click", () => {
-    modalImage.src = cardImageEl.src;
-    modalImage.alt = `Photo of ${cardData.name}`;
-    previewSubtitle.textContent = cardData.name;
-    openModal(previewImageModal);
-  });
-
-  return cardElement;
 }
 
 function handleImageClick(this){

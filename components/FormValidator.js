@@ -10,10 +10,8 @@ class FormValidator {
   enableValidation() {
     //enables form validation
   }
-
   //disable state of the button or reset form validation(including button state)
 }
 
-class ProfileFormValidator extends FormValidator {}
-
-class ImageFormValidator extends FormValidator {}
+//in index.js
+//Create an instance of the FormValidator class for each form that should be validated.
