@@ -58,10 +58,9 @@ export default class FormValidator {
   _setEventListeners() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      //clear inputs and disable the button
-      this._inputElements.forEach((inputElement) => {
-        inputElement.value = "";
-      });
+      // this._inputElements.forEach((inputElement) => {
+      //   inputElement.value = "";
+      // });
       this._submitButton.disabled = true;
     });
 

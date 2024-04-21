@@ -61,8 +61,8 @@ const previewSubtitle = previewImageModal.querySelector(
 //Form Data:
 const nameInput = document.querySelector("[name='name'");
 const jobInput = document.querySelector("[name='job']");
-const cardTitleInput = addCardFormElement.querySelector("[name='title']");
-const cardUrlInput = addCardFormElement.querySelector("[name='url']");
+const cardTitleInput = addCardFormElement.querySelector("#title");
+const cardUrlInput = addCardFormElement.querySelector("#url");
 
 const options = {
   formSelector: ".modal__form",
@@ -116,17 +116,18 @@ function handleProfileFormSubmit(evt) {
 }
 
 function handleAddCardFormSubmit(evt) {
+  console.log("form submitted");
   evt.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   console.log(name);
   console.log(link);
-  const renderCard = new Card(
+  const renderNewCard = new Card(
     { name, link },
     "#card-template",
     handleImageClick
   );
-  cardListEl.prepend(renderCard.generateCard());
+  cardListEl.prepend(renderNewCard.generateCard());
 
   closeModal(addCardModal);
   clearCardForm();
@@ -148,7 +149,7 @@ function clearCardForm() {
 
 function handleImageClick(card) {
   const modalImage = document.querySelector(".modal__image-preview");
-  modalImage.src = card._image.src;
+  modalImage.src = card._image;
   modalImage.alt = `Photo of ${card._name}`;
   previewSubtitle.textContent = card._name;
   openModal(previewImageModal);
