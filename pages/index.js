@@ -49,7 +49,6 @@ const addCardCloseButton = addCardModal.querySelector(".modal__close");
 const closeButtons = document.querySelectorAll(".modal__close");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
-const profileEditForm = profileEditModal.querySelector("#edit-profile-form");
 const addNewCardButton = document.querySelector(".profile__add-button");
 const previewCloseButton = document.querySelector(
   "#preview-image-close-button"
@@ -57,6 +56,7 @@ const previewCloseButton = document.querySelector(
 const previewSubtitle = previewImageModal.querySelector(
   ".modal__picture-subtitle"
 );
+const modalImage = document.querySelector(".modal__image-preview");
 
 //Form Data:
 const nameInput = document.querySelector("[name='name'");
@@ -79,14 +79,21 @@ const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
 
 initialCards.forEach((cardData) => {
-  const renderCard = new Card(cardData, "#card-template", handleImageClick);
-  cardListEl.prepend(renderCard.generateCard());
+  const renderCard = createCard(cardData);
+  cardListEl.prepend(renderCard);
 });
 
 //Functions:
 
+function createCard(item) {
+  const cardElement = new Card(item, "#card-template", handleImageClick);
+  return cardElement.generateCard();
+}
+
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEscape);
+  modal.removeEventListener("mousedown", closeModalOverlay);
 }
 
 function openModal(modal) {
@@ -116,18 +123,12 @@ function handleProfileFormSubmit(evt) {
 }
 
 function handleAddCardFormSubmit(evt) {
-  console.log("form submitted");
   evt.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  console.log(name);
-  console.log(link);
-  const renderNewCard = new Card(
-    { name, link },
-    "#card-template",
-    handleImageClick
-  );
-  cardListEl.prepend(renderNewCard.generateCard());
+  const renderNewCard = createCard({ name, link });
+
+  cardListEl.prepend(renderNewCard);
 
   closeModal(addCardModal);
   clearCardForm();
@@ -148,7 +149,6 @@ function clearCardForm() {
 }
 
 function handleImageClick(card) {
-  const modalImage = document.querySelector(".modal__image-preview");
   modalImage.src = card._image;
   modalImage.alt = `Photo of ${card._name}`;
   previewSubtitle.textContent = card._name;
@@ -158,7 +158,7 @@ function handleImageClick(card) {
 //Event Listeners:
 
 profileEditButton.addEventListener("click", openEditProfileModal);
-profileEditForm.addEventListener("submit", handleProfileFormSubmit);
+profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 closeButtons.forEach((button) => {
