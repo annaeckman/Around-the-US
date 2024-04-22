@@ -28,10 +28,6 @@ const initialCards = [
   },
 ];
 
-// Elements
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-
 //Wrappers:
 const cardListEl = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#edit-modal");
@@ -39,20 +35,14 @@ const addCardModal = document.querySelector("#add-card-modal");
 const previewImageModal = document.querySelector("#preview-image-modal");
 const profileFormElement = document.forms["edit-profile-form"];
 const addCardFormElement = document.forms["add-card-form"];
-const addCardFormInputs = addCardFormElement.querySelectorAll(".modal__input");
 
 //
 //Buttons and Nodes:
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileCloseButton = profileEditModal.querySelector(".modal__close");
-const addCardCloseButton = addCardModal.querySelector(".modal__close");
 const closeButtons = document.querySelectorAll(".modal__close");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
 const addNewCardButton = document.querySelector(".profile__add-button");
-const previewCloseButton = document.querySelector(
-  "#preview-image-close-button"
-);
 const previewSubtitle = previewImageModal.querySelector(
   ".modal__picture-subtitle"
 );
