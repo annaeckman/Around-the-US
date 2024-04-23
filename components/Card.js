@@ -16,7 +16,7 @@ export default class Card {
     });
 
     this._deleteButton.addEventListener("click", () => {
-      this_element.remove();
+      this._element.remove();
     });
   }
 
