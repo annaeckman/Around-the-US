@@ -41,9 +41,13 @@ export default class FormValidator {
     this._hideInputError(inputElement);
   }
 
+  _disableButton() {
+    this._submitButton.disabled = true;
+  }
+
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._submitButton.disabled = true;
+      this._disableButton();
       return;
     }
     this._submitButton.disabled = false;
@@ -61,7 +65,7 @@ export default class FormValidator {
       // this._inputElements.forEach((inputElement) => {
       //   inputElement.value = "";
       // });
-      this._submitButton.disabled = true;
+      this._disableButton();
     });
 
     this._inputElements.forEach((inputElement) => {
