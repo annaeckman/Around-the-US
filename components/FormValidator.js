@@ -62,9 +62,7 @@ export default class FormValidator {
   _setEventListeners() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      // this._inputElements.forEach((inputElement) => {
-      //   inputElement.value = "";
-      // });
+
       this._disableButton();
     });
 
@@ -80,9 +78,3 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
-
-// const profileFormValidator = new FormValidator(options, editFormElement);
-// profileFormValidator.enableValidation();
-
-// const addCardFormValidator = new FormValidator(options, addCardFormElement);
-// addCardFormValidator.enableValidation();
