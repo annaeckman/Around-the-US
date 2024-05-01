@@ -2,6 +2,7 @@ import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import ModalWithForm from "../components/ModalWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const initialCards = [
   {
@@ -64,6 +65,8 @@ const options = {
   errorClass: "modal__error_visible",
 };
 
+////CLASS IMPLEMENTATION BELOW///////
+
 const profileFormValidator = new FormValidator(options, profileFormElement);
 profileFormValidator.enableValidation();
 
@@ -84,73 +87,74 @@ const cardsSection = new Section(
 cardsSection.renderItems();
 
 //PROFILE MODAL INSTANTIATION:
-const newProfileModal = new ModalWithForm(
-  "#edit-modal",
-  handleProfileFormSubmit
-);
-newProfileModal.setEventListeners();
+const profileModal = new ModalWithForm("#edit-modal", handleProfileFormSubmit);
+profileModal.setEventListeners();
 
-// //NEW CARD MODAL INSTANTIATION:
-// const newCardModal = new ModalWithForm(
-//   "#add-card-modal",
-//   handleAddCardFormSubmit
-// );
-// newCardModal.open();
-// newCardModal.close();
+//NEW CARD MODAL INSTANTIATION:
+const cardModal = new ModalWithForm("#add-card-modal", handleAddCardFormSubmit);
+cardModal.setEventListeners();
+
+//USER INFO INSTANSTIATION:
+const userInfo = new UserInfo({
+  nameElementSelector: ".profile__name",
+  jobElementSelector: ".profile__job",
+});
+
+//Event listeners for modal buttons:
+profileEditButton.addEventListener("click", () => {
+  const currentUser = userInfo.getUserInfo();
+  nameInput.value = currentUser.name;
+  jobInput.value = currentUser.job;
+
+  profileModal.open();
+});
+
+addNewCardButton.addEventListener("click", () => {
+  cardModal.open();
+});
+
+// closeButtons.forEach((button) => {
+//   // const modal = button.closest(".modal");
+//   button.addEventListener("click", () => {
+//     profileModal.close();
+//     //OR
+//     cardModal.close();
+//   });
+// });
 
 //Functions:
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closeModal(profileEditModal);
+function handleProfileFormSubmit(inputValues) {
+  profileName.textContent = inputValues.name;
+  profileJob.textContent = inputValues.job;
 }
 
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  const renderNewCard = createCard({ name, link });
+function handleAddCardFormSubmit(inputValues) {
+  const name = inputValues.name;
+  const link = inputValues.url;
+  const newCard = new Card({ name, link }, "#card-template", handleImageClick);
 
-  cardListEl.prepend(renderNewCard);
-
-  closeModal(addCardModal);
-  clearCardForm();
-}
-
-function fillProfileForm() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-}
-
-function openEditProfileModal() {
-  fillProfileForm();
-  openModal(profileEditModal);
-}
-
-function clearCardForm() {
-  addCardFormElement.reset();
+  cardListEl.prepend(newCard.generateCard());
 }
 
 function handleImageClick(card) {
   modalImage.src = card._image;
   modalImage.alt = `Photo of ${card._name}`;
   previewSubtitle.textContent = card._name;
-  openModal(previewImageModal);
+  // previewImageModal.open()
 }
 
 //Event Listeners:
 
-profileEditButton.addEventListener("click", openEditProfileModal);
-profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
+// profileEditButton.addEventListener("click", openEditProfileModal);
 
-closeButtons.forEach((button) => {
-  const modal = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(modal));
-});
+// profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+// addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
-addNewCardButton.addEventListener("click", () => {
-  openModal(addCardModal);
-});
+// closeButtons.forEach((button) => {
+//   const modal = button.closest(".modal");
+//   button.addEventListener("click", () => closeModal(modal));
+// });
+
+// addNewCardButton.addEventListener("click", () => {
+//   openModal(addCardModal);
+// });

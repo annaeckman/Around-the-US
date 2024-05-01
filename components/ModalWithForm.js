@@ -19,23 +19,14 @@ export default class ModalWithForm extends Modal {
   }
 
   close() {
+    this._modalForm.reset();
     super.close();
-    this._modalElement.reset();
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._modalForm.addEventListeners("submit", () => {
+    this._modalForm.addEventListener("submit", () => {
       this._handleFormSubmit(this._getInputValues());
     });
   }
 }
-
-// // index.js:
-// const newCardModal = new ModalWithForm(
-//   "#add-card-modal",
-//   handleAddCardFormSubmit
-// );
-// newCardModal.open();
-
-// newCardModal.close();

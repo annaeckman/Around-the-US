@@ -5,17 +5,17 @@ export default class Modal {
   }
 
   open() {
-    this._modal.classList.add("modal_opened");
-    document.addEventListener("keydown", this._handleEscClose);
+    this._modalElement.classList.add("modal_opened");
   }
 
   close() {
-    this._modal.classList.remove("modal_opened");
-    this.removeEventListeners();
+    console.log(this._modalElement);
+    this._modalElement.classList.remove("modal_opened");
   }
 
-  _handleEscClose() {
+  _handleEscClose(evt) {
     if (evt.key === "Escape") {
+      console.log("thi s is handle escape close");
       this.close();
     }
   }
@@ -28,14 +28,10 @@ export default class Modal {
   };
 
   setEventListeners() {
-    this._modal.addEventListener("mousedown", this._closeModalOverlay);
+    this._modalElement.addEventListener("mousedown", this._closeModalOverlay);
     this._closeButtons.forEach((button) => {
       button.addEventListener("click", this.close);
     });
-  }
-
-  removeEventListeners() {
-    document.removeEventListener("keydown", closeModalEscape);
-    this.modal.removeEventListener("mousedown", closeModalOverlay);
+    document.addEventListener("keydown", this._handleEscClose);
   }
 }
