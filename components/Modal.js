@@ -6,13 +6,12 @@ export default class Modal {
 
   open() {
     this._modal.classList.add("modal_opened");
-    this.setEventListeners();
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._modal.classList.remove("modal_opened");
-    document.removeEventListener("keydown", closeModalEscape);
-    this.modal.removeEventListener("mousedown", closeModalOverlay);
+    this.removeEventListeners();
   }
 
   _handleEscClose() {
@@ -21,18 +20,22 @@ export default class Modal {
     }
   }
 
-  _closeModalOverlay(evt) {
+  _closeModalOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
       this.close();
+      //this needs to be an arrow function bc it uses this...read max's article...
     }
-  }
+  };
 
   setEventListeners() {
-    //that adds a click event listener to the close icon of the popup. The modal window should also close when users click on the shaded area around the form.
-    document.addEventListener("keydown", this._handleEscClose);
     this._modal.addEventListener("mousedown", this._closeModalOverlay);
     this._closeButtons.forEach((button) => {
       button.addEventListener("click", this.close);
     });
+  }
+
+  removeEventListeners() {
+    document.removeEventListener("keydown", closeModalEscape);
+    this.modal.removeEventListener("mousedown", closeModalOverlay);
   }
 }

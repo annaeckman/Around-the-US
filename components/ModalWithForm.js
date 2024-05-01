@@ -1,12 +1,12 @@
-import Modal from "./Modal";
+import Modal from "./Modal.js";
 
-class ModalWithForm extends Modal {
+export default class ModalWithForm extends Modal {
   constructor(modalSelector, handleFormSubmit) {
     super({ modalSelector });
     this._modalForm = this._modalElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
     this._inputElements = Array.from(
-      this.modalForm.querySelectorAll("modal__input")
+      this._modalForm.querySelectorAll("modal__input")
     );
   }
 
@@ -31,11 +31,11 @@ class ModalWithForm extends Modal {
   }
 }
 
-// index.js
-const newCardModal = new ModalWithForm(
-  "#add-card-modal",
-  handleAddCardFormSubmit
-);
-newCardModal.open();
+// // index.js:
+// const newCardModal = new ModalWithForm(
+//   "#add-card-modal",
+//   handleAddCardFormSubmit
+// );
+// newCardModal.open();
 
-newCardModal.close();
+// newCardModal.close();

@@ -1,5 +1,7 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import ModalWithForm from "../components/ModalWithForm.js";
 
 const initialCards = [
   {
@@ -68,42 +70,35 @@ profileFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
 
-initialCards.forEach((cardData) => {
-  const renderCard = createCard(cardData);
-  cardListEl.prepend(renderCard);
-});
+//Section Class instantiation:
+const cardsSection = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = new Card(cardData, "#card-template");
+      cardsSection.addItem(cardElement.generateCard());
+    },
+  },
+  ".cards__list"
+);
+cardsSection.renderItems();
+
+//PROFILE MODAL INSTANTIATION:
+const newProfileModal = new ModalWithForm(
+  "#edit-modal",
+  handleProfileFormSubmit
+);
+newProfileModal.setEventListeners();
+
+// //NEW CARD MODAL INSTANTIATION:
+// const newCardModal = new ModalWithForm(
+//   "#add-card-modal",
+//   handleAddCardFormSubmit
+// );
+// newCardModal.open();
+// newCardModal.close();
 
 //Functions:
-
-function createCard(item) {
-  const cardElement = new Card(item, "#card-template", handleImageClick);
-  return cardElement.generateCard();
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalEscape);
-  modal.removeEventListener("mousedown", closeModalOverlay);
-}
-
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalEscape);
-  modal.addEventListener("mousedown", closeModalOverlay);
-}
-
-function closeModalOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.currentTarget);
-  }
-}
-
-function closeModalEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    closeModal(openedModal);
-  }
-}
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
