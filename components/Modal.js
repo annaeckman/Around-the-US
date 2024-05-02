@@ -1,7 +1,7 @@
 export default class Modal {
   constructor({ modalSelector }) {
     this._modalElement = document.querySelector(modalSelector);
-    this._closeButtons = document.querySelectorAll(".modal__close");
+    this._closeButton = this._modalElement.querySelector(".modal__close");
   }
 
   open() {
@@ -14,7 +14,6 @@ export default class Modal {
 
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
-      console.log("thi s is handle escape close");
       this.close();
     }
   }
@@ -30,9 +29,9 @@ export default class Modal {
     this._modalElement.addEventListener("mousedown", (evt) =>
       this._closeModalOverlay(evt)
     );
-    this._closeButtons.forEach((button) => {
-      button.addEventListener("click", () => this.close);
-    });
+
+    this._closeButton.addEventListener("click", () => this.close());
+
     document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 }

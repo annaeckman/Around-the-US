@@ -3,6 +3,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import ModalWithImage from "../components/ModalWithImage.js";
 
 const initialCards = [
   {
@@ -33,30 +34,21 @@ const initialCards = [
 
 //Wrappers:
 const cardListEl = document.querySelector(".cards__list");
-const profileEditModal = document.querySelector("#edit-modal");
-const addCardModal = document.querySelector("#add-card-modal");
-const previewImageModal = document.querySelector("#preview-image-modal");
 const profileFormElement = document.forms["edit-profile-form"];
 const addCardFormElement = document.forms["add-card-form"];
 
 //
 //Buttons and Nodes:
 const profileEditButton = document.querySelector(".profile__edit-button");
-const closeButtons = document.querySelectorAll(".modal__close");
+const addNewCardButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__name");
 const profileJob = document.querySelector(".profile__job");
-const addNewCardButton = document.querySelector(".profile__add-button");
-const previewSubtitle = previewImageModal.querySelector(
-  ".modal__picture-subtitle"
-);
-const modalImage = document.querySelector(".modal__image-preview");
 
 //Form Data:
 const nameInput = document.querySelector("[name='name'");
 const jobInput = document.querySelector("[name='job']");
-const cardTitleInput = addCardFormElement.querySelector("#title");
-const cardUrlInput = addCardFormElement.querySelector("#url");
 
+//Selectors and Classes:
 const options = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -67,18 +59,22 @@ const options = {
 
 ////CLASS IMPLEMENTATION BELOW///////
 
+//VALIDATION INSTANTIATION:
+
 const profileFormValidator = new FormValidator(options, profileFormElement);
 profileFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
 
-//Section Class instantiation:
+//SECTION CLASS INSTANTIATION:
 const cardsSection = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      const cardElement = new Card(cardData, "#card-template");
+      const cardElement = new Card(cardData, "#card-template", () => {
+        imagePreviewModal.open(cardData);
+      });
       cardsSection.addItem(cardElement.generateCard());
     },
   },
@@ -93,6 +89,10 @@ profileModal.setEventListeners();
 //NEW CARD MODAL INSTANTIATION:
 const cardModal = new ModalWithForm("#add-card-modal", handleAddCardFormSubmit);
 cardModal.setEventListeners();
+
+//MODAL WITH IMAGE INSTANTIATION:
+const imagePreviewModal = new ModalWithImage("#preview-image-modal");
+imagePreviewModal.setEventListeners();
 
 //USER INFO INSTANSTIATION:
 const userInfo = new UserInfo({
@@ -113,48 +113,21 @@ addNewCardButton.addEventListener("click", () => {
   cardModal.open();
 });
 
-// closeButtons.forEach((button) => {
-//   // const modal = button.closest(".modal");
-//   button.addEventListener("click", () => {
-//     profileModal.close();
-//     //OR
-//     cardModal.close();
-//   });
-// });
-
 //Functions:
 function handleProfileFormSubmit(inputValues) {
+  console.log(inputValues.name);
   profileName.textContent = inputValues.name;
   profileJob.textContent = inputValues.job;
+  profileModal.close();
 }
 
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.name;
   const link = inputValues.url;
-  const newCard = new Card({ name, link }, "#card-template", handleImageClick);
+  const newCard = new Card({ name, link }, "#card-template", () => {
+    imagePreviewModal.open(cardData);
+  });
 
   cardListEl.prepend(newCard.generateCard());
+  cardModal.close();
 }
-
-function handleImageClick(card) {
-  modalImage.src = card._image;
-  modalImage.alt = `Photo of ${card._name}`;
-  previewSubtitle.textContent = card._name;
-  // previewImageModal.open()
-}
-
-//Event Listeners:
-
-// profileEditButton.addEventListener("click", openEditProfileModal);
-
-// profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-// addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
-
-// closeButtons.forEach((button) => {
-//   const modal = button.closest(".modal");
-//   button.addEventListener("click", () => closeModal(modal));
-// });
-
-// addNewCardButton.addEventListener("click", () => {
-//   openModal(addCardModal);
-// });
