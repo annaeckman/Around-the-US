@@ -122,7 +122,7 @@ function handleProfileFormSubmit(inputValues) {
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  const name = inputValues.name;
+  const name = inputValues.title;
   const link = inputValues.url;
   const newCard = new Card({ name, link }, "#card-template", () => {
     imagePreviewModal.open(cardData);
