@@ -9,7 +9,6 @@ export default class Modal {
   }
 
   close() {
-    console.log(this._modalElement);
     this._modalElement.classList.remove("modal_opened");
   }
 
@@ -28,10 +27,12 @@ export default class Modal {
   };
 
   setEventListeners() {
-    this._modalElement.addEventListener("mousedown", this._closeModalOverlay);
+    this._modalElement.addEventListener("mousedown", (evt) =>
+      this._closeModalOverlay(evt)
+    );
     this._closeButtons.forEach((button) => {
-      button.addEventListener("click", this.close);
+      button.addEventListener("click", () => this.close);
     });
-    document.addEventListener("keydown", this._handleEscClose);
+    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 }
