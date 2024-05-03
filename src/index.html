@@ -8,14 +8,13 @@
     <meta name="description" content="here's a description of this website" />
     <meta name="keywords" content="explorer, national parks, cousteau" />
     <title>Around the U.S.</title>
-    <link href="./pages/index.css" rel="stylesheet" />
     <link rel="shortcut icon" href="favicon.ico" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/around-the-us.png"
+          src="<%=require('./images/around-the-us.png')%>"
           alt="text saying Around the U.S."
           class="header__image"
         />
@@ -24,7 +23,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="smiling Jacques in a red hat"
           />
           <div class="profile__info">
@@ -151,8 +150,5 @@
         </div>
       </li>
     </template>
-    <!-- <script type="module" src="./components/Card.js" defer></script>
-    <script type="module" src="./components/FormValidator.js" defer></script> -->
-    <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>
