@@ -20,7 +20,7 @@ export default class ModalWithForm extends Modal {
 
   close() {
     super.close();
-    this._modalForm.reset();
+    // this._modalForm.reset();
   }
 
   setEventListeners() {

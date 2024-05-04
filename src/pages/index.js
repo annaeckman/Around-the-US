@@ -32,10 +32,8 @@ const cardsSection = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      const cardElement = new Card(cardData, "#card-template", () => {
-        imagePreviewModal.open(cardData);
-      });
-      cardsSection.addItem(cardElement.generateCard());
+      const cardElement = createCard(cardData);
+      cardsSection.addItemByAppending(cardElement.generateCard());
     },
   },
   ".cards__list"
@@ -74,10 +72,18 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 //FUNCTIONS:
+
+function createCard(cardData) {
+  return new Card(cardData, "#card-template", () => {
+    imagePreviewModal.open(cardData);
+  });
+}
 function handleProfileFormSubmit(inputValues) {
   console.log(inputValues.name);
-  profileName.textContent = inputValues.name;
-  profileJob.textContent = inputValues.job;
+  userInfo.setUserInfo({
+    nameInput: inputValues.name,
+    jobInput: inputValues.job,
+  });
   profileModal.close();
 }
 
@@ -85,10 +91,9 @@ function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.url;
   const cardData = { name, link };
-  const newCard = new Card({ name, link }, "#card-template", () => {
-    imagePreviewModal.open(cardData);
-  });
+  const newCard = createCard(cardData);
 
-  cardListEl.prepend(newCard.generateCard());
+  cardsSection.addItemByPrepending(newCard.generateCard());
   cardModal.close();
+  profileModal._modalForm.reset();
 }

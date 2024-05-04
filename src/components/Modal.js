@@ -16,6 +16,7 @@ export default class Modal {
     if (evt.key === "Escape") {
       this.close();
     }
+    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 
   _closeModalOverlay = (evt) => {
@@ -23,6 +24,9 @@ export default class Modal {
       this.close();
       //this needs to be an arrow function bc it uses this...read max's article...
     }
+    this._modalElement.removeEventListener("mousedown", (evt) =>
+      this._closeModalOverlay(evt)
+    );
   };
 
   setEventListeners() {
