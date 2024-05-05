@@ -6,17 +6,18 @@ export default class Modal {
 
   open() {
     this._modalElement.classList.add("modal_opened");
+    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 
   close() {
     this._modalElement.classList.remove("modal_opened");
+    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
-    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 
   _closeModalOverlay = (evt) => {
@@ -24,9 +25,6 @@ export default class Modal {
       this.close();
       //this needs to be an arrow function bc it uses this...read max's article...
     }
-    this._modalElement.removeEventListener("mousedown", (evt) =>
-      this._closeModalOverlay(evt)
-    );
   };
 
   setEventListeners() {
@@ -35,7 +33,5 @@ export default class Modal {
     );
 
     this._closeButton.addEventListener("click", () => this.close());
-
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
   }
 }

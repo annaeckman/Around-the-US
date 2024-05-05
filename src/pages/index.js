@@ -60,9 +60,10 @@ const userInfo = new UserInfo({
 
 //EVENT LISTENERS FOR MODAL BUTTONS:
 profileEditButton.addEventListener("click", () => {
-  const currentUser = userInfo.getUserInfo();
-  nameInput.value = currentUser.name;
-  jobInput.value = currentUser.job;
+  //removed this auto-fill of profile modal bc reviewer wanted it to be reset//
+  // const currentUser = userInfo.getUserInfo();
+  // nameInput.value = currentUser.name;
+  // jobInput.value = currentUser.job;
 
   profileModal.open();
   profileFormValidator.resetValidation();
@@ -87,6 +88,7 @@ function handleProfileFormSubmit(inputValues) {
     jobInput: inputValues.job,
   });
   profileModal.close();
+  profileModal._modalForm.reset();
 }
 
 function handleAddCardFormSubmit(inputValues) {
@@ -97,5 +99,5 @@ function handleAddCardFormSubmit(inputValues) {
 
   cardsSection.addItemByPrepending(newCard.generateCard());
   cardModal.close();
-  profileModal._modalForm.reset();
+  cardModal._modalForm.reset();
 }
