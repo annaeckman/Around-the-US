@@ -41,6 +41,15 @@ export default class FormValidator {
     this._hideInputError(inputElement);
   }
 
+  //add a reset Validation function...
+  resetValidation() {
+    this._toggleButtonState(); // controlling the submit button ==
+
+    this._inputElements.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   _disableButton() {
     this._submitButton.disabled = true;
   }
@@ -73,16 +82,6 @@ export default class FormValidator {
       });
     });
   }
-
-  //add a reset Validation function...
-  // resetValidation() {
-  //   this._toggleButtonState(); <== controlling the submit button ==
-
-  //   this._inputList.forEach((inputElement) => {
-  //     this._hideError(inputElement) <== clearing errors ==
-  //   });
-
-  // }
 
   enableValidation() {
     this._setEventListeners();

@@ -65,10 +65,12 @@ profileEditButton.addEventListener("click", () => {
   jobInput.value = currentUser.job;
 
   profileModal.open();
+  profileFormValidator.resetValidation();
 });
 
 addNewCardButton.addEventListener("click", () => {
   cardModal.open();
+  addCardFormValidator.resetValidation();
 });
 
 //FUNCTIONS:
