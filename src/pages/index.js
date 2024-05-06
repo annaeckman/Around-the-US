@@ -23,6 +23,10 @@ import {
 
 const profileFormValidator = new FormValidator(options, profileFormElement);
 profileFormValidator.enableValidation();
+//use profileModal.modalForm here in order to not search the form?
+//const profileFormValidator = new FormValidator(options, profileModal.modalForm);
+//tried above and it did not work...still need to troubleshoot.
+//same for below:
 
 const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
@@ -32,8 +36,7 @@ const cardsSection = new Section(
   {
     items: initialCards,
     renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      cardsSection.addItemByAppending(cardElement.generateCard());
+      cardsSection.appendItem(createCard(cardData));
     },
   },
   ".cards__list"
@@ -60,10 +63,9 @@ const userInfo = new UserInfo({
 
 //EVENT LISTENERS FOR MODAL BUTTONS:
 profileEditButton.addEventListener("click", () => {
-  //removed this auto-fill of profile modal bc reviewer wanted it to be reset//
-  // const currentUser = userInfo.getUserInfo();
-  // nameInput.value = currentUser.name;
-  // jobInput.value = currentUser.job;
+  const currentUser = userInfo.getUserInfo();
+  nameInput.value = currentUser.name;
+  jobInput.value = currentUser.job;
 
   profileModal.open();
   profileFormValidator.resetValidation();
@@ -77,10 +79,12 @@ addNewCardButton.addEventListener("click", () => {
 //FUNCTIONS:
 
 function createCard(cardData) {
-  return new Card(cardData, "#card-template", () => {
+  const newCard = new Card(cardData, "#card-template", () => {
     imagePreviewModal.open(cardData);
   });
+  return newCard.generateCard();
 }
+
 function handleProfileFormSubmit(inputValues) {
   console.log(inputValues.name);
   userInfo.setUserInfo({
@@ -88,16 +92,14 @@ function handleProfileFormSubmit(inputValues) {
     jobInput: inputValues.job,
   });
   profileModal.close();
-  profileModal._modalForm.reset();
 }
 
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.url;
   const cardData = { name, link };
-  const newCard = createCard(cardData);
 
-  cardsSection.addItemByPrepending(newCard.generateCard());
+  cardsSection.prependItem(createCard(cardData));
   cardModal.close();
-  cardModal._modalForm.reset();
+  cardModal.modalForm.reset();
 }

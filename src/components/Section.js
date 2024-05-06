@@ -13,11 +13,11 @@ export default class Section {
     });
   }
 
-  addItemByAppending(item) {
+  appendItem(item) {
     this._container.append(item);
   }
 
-  addItemByPrepending(item) {
+  prependItem(item) {
     this._container.prepend(item);
   }
 }

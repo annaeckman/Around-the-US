@@ -2,16 +2,17 @@ export default class Modal {
   constructor({ modalSelector }) {
     this._modalElement = document.querySelector(modalSelector);
     this._closeButton = this._modalElement.querySelector(".modal__close");
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
     this._modalElement.classList.add("modal_opened");
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
     this._modalElement.classList.remove("modal_opened");
-    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   _handleEscClose(evt) {

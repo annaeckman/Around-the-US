@@ -3,10 +3,10 @@ import Modal from "./Modal.js";
 export default class ModalWithForm extends Modal {
   constructor(modalSelector, handleFormSubmit) {
     super({ modalSelector });
-    this._modalForm = this._modalElement.querySelector(".modal__form");
+    this.modalForm = this._modalElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
     this._inputElements = Array.from(
-      this._modalForm.querySelectorAll(".modal__input")
+      this.modalForm.querySelectorAll(".modal__input")
     );
   }
 
@@ -18,14 +18,9 @@ export default class ModalWithForm extends Modal {
     return inputValues;
   }
 
-  close() {
-    super.close();
-    // this._modalForm.reset();
-  }
-
   setEventListeners() {
     super.setEventListeners();
-    this._modalForm.addEventListener("submit", () =>
+    this.modalForm.addEventListener("submit", () =>
       this._handleFormSubmit(this._getInputValues())
     );
   }
