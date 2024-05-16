@@ -37,9 +37,9 @@ This project is made so all elements are displayed correctly on popular screen s
 [video with JS validation and UX updates](https://app.screencastify.com/v3/watch/WTLE1OVFQnZ5XAr4Tq8x)
 [video with challenges faced with updates](https://drive.google.com/file/d/1QpDf0LP_n6if6Kp_Gie-M4GP5Da13B_U/view?usp=drive_link)
 
-![Alt text](./images/image.png)
-![Alt text](./images/image-2.png)
-![Alt text](./images/image-1.png)
+![Alt text](./src/images/image.png)
+![Alt text](./src/images/image-2.png)
+![Alt text](./src/images/image-1.png)
 
 ### Technologies Used
 
