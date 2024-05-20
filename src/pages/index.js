@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import ModalWithImage from "../components/ModalWithImage.js";
+import Api from "../components/Api.js";
 import {
   cardListEl,
   profileFormElement,
@@ -18,6 +19,15 @@ import {
   options,
   initialCards,
 } from "../components/utils/constants.js";
+
+//API INSTANTIATION:
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "ca9ab9de-2f85-4851-84ad-f764b1c60afd",
+    "Content-Type": "application/json",
+  },
+});
 
 //VALIDATION INSTANTIATION:
 
