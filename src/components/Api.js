@@ -20,7 +20,6 @@ export default class Api {
     });
   }
 
-  // other methods for working with the API
   getUserInfo() {
     return fetch(`${this._baseURL}/users/me`, {
       headers: this._headers,
@@ -32,7 +31,8 @@ export default class Api {
   updateUserInfo(name, about) {
     return fetch(`${this._baseURL}/users/me`, {
       method: "PATCH",
-      headers: JSON.stringify({
+      headers: this._headers,
+      body: JSON.stringify({
         name,
         about,
       }),

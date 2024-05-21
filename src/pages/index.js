@@ -33,7 +33,14 @@ const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
 
 //SECTION CLASS INSTANTIATION:
-const cardsSection = new Section(".cards__list");
+const cardsSection = new Section(
+  {
+    renderer: (cardData) => {
+      cardsSection.appendItem(createCard(cardData));
+    },
+  },
+  ".cards__list"
+);
 
 //PROFILE MODAL INSTANTIATION:
 const profileModal = new ModalWithForm("#edit-modal", handleProfileFormSubmit);
@@ -51,6 +58,7 @@ imagePreviewModal.setEventListeners();
 const userInfo = new UserInfo({
   nameElementSelector: ".profile__name",
   jobElementSelector: ".profile__job",
+  avatarSelector: ".profile__image",
 });
 
 //EVENT LISTENERS FOR MODAL BUTTONS:
@@ -77,12 +85,18 @@ function createCard(cardData) {
 }
 
 function handleProfileFormSubmit(inputValues) {
-  console.log(inputValues.name);
-  userInfo.setUserInfo({
-    nameInput: inputValues.name,
-    jobInput: inputValues.job,
-  });
-  profileModal.close();
+  api
+    .updateUserInfo(inputValues.name, inputValues.job)
+    .then((res) => {
+      userInfo.setUserInfo({
+        nameInput: inputValues.name,
+        jobInput: inputValues.job,
+      });
+      profileModal.close();
+    })
+    .catch((err) => {
+      console.error(err); // log the error to the console
+    });
 }
 
 function handleAddCardFormSubmit(inputValues) {
@@ -90,9 +104,16 @@ function handleAddCardFormSubmit(inputValues) {
   const link = inputValues.url;
   const cardData = { name, link };
 
-  cardsSection.prependItem(createCard(cardData));
-  cardModal.close();
-  cardModal.modalForm.reset();
+  api
+    .addNewCard(name, link)
+    .then((res) => {
+      cardsSection.prependItem(createCard(res));
+      cardModal.close();
+      cardModal.modalForm.reset();
+    })
+    .catch((err) => {
+      console.error(err); // log the error to the console
+    });
 }
 
 //API INSTANTIATION:
@@ -110,6 +131,19 @@ api
     console.log(result);
     result.forEach((cardData) => {
       cardsSection.appendItem(createCard(cardData));
+    });
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
+
+//initial user info from server and uploading to DOM
+api
+  .getUserInfo()
+  .then((result) => {
+    userInfo.setUserInfo({
+      nameInput: result.name,
+      jobInput: result.about,
     });
   })
   .catch((err) => {
