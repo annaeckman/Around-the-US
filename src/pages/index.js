@@ -20,15 +20,6 @@ import {
   initialCards,
 } from "../components/utils/constants.js";
 
-//API INSTANTIATION:
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "ca9ab9de-2f85-4851-84ad-f764b1c60afd",
-    "Content-Type": "application/json",
-  },
-});
-
 //VALIDATION INSTANTIATION:
 
 const profileFormValidator = new FormValidator(options, profileFormElement);
@@ -42,16 +33,7 @@ const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
 
 //SECTION CLASS INSTANTIATION:
-const cardsSection = new Section(
-  {
-    items: initialCards,
-    renderer: (cardData) => {
-      cardsSection.appendItem(createCard(cardData));
-    },
-  },
-  ".cards__list"
-);
-cardsSection.renderItems();
+const cardsSection = new Section(".cards__list");
 
 //PROFILE MODAL INSTANTIATION:
 const profileModal = new ModalWithForm("#edit-modal", handleProfileFormSubmit);
@@ -112,3 +94,35 @@ function handleAddCardFormSubmit(inputValues) {
   cardModal.close();
   cardModal.modalForm.reset();
 }
+
+//API INSTANTIATION:
+const api = new Api({
+  baseURL: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "ca9ab9de-2f85-4851-84ad-f764b1c60afd",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((result) => {
+    console.log(result);
+    result.forEach((cardData) => {
+      cardsSection.appendItem(createCard(cardData));
+    });
+  })
+  .catch((err) => {
+    console.error(err); // log the error to the console
+  });
+//above is a form for what i need to do for the card and user info...
+
+//on initial page load, call getuserinfo method return object with user's name and avatar and job insert that into dom
+//use userinfo class, modify add a method to set the avatar
+
+//start with the handle functions
+//in the handlers call relevant api function and then when that returns use a .then method, that's when i handle the updates to the user interface
+//for the card, in the .then((in this callback fn is when i take the data from the response, and create a card add it to the dom, in the userinfo insert the values into relevant html elements))
+//likes and deleting is more complicated, i'll prob get it after doing above
+
+//in a real application, you wouldn't log the error to the console, you'd make it accesible to user..that's later
