@@ -116,6 +116,8 @@ function handleAddCardFormSubmit(inputValues) {
     });
 }
 
+function handleCardDeleteClick() {}
+
 //API INSTANTIATION:
 const api = new Api({
   baseURL: "https://around-api.en.tripleten-services.com/v1",

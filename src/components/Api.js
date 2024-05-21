@@ -51,6 +51,16 @@ export default class Api {
       }),
     });
   }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseURL}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+      body: JSON.stringify({
+        cardId,
+      }),
+    });
+  }
 }
 
 //this goes into index.js putting it here for reference...
