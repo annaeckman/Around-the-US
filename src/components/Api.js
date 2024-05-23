@@ -49,6 +49,8 @@ export default class Api {
         name,
         link,
       }),
+    }).then((res) => {
+      return this._checkPromise(res);
     });
   }
 

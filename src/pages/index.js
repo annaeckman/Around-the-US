@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import ModalWithImage from "../components/ModalWithImage.js";
+import Modal from "../components/Modal.js";
 import Api from "../components/Api.js";
 import {
   cardListEl,
@@ -42,6 +43,13 @@ const cardsSection = new Section(
   ".cards__list"
 );
 
+//DELETE MODAL INSTANTIATION:
+const deleteConfirmModal = new ModalWithForm(
+  "#delete-confirm-modal",
+  handleDeleteFormSubmit
+);
+deleteConfirmModal.setEventListeners();
+
 //PROFILE MODAL INSTANTIATION:
 const profileModal = new ModalWithForm("#edit-modal", handleProfileFormSubmit);
 profileModal.setEventListeners();
@@ -78,9 +86,18 @@ addNewCardButton.addEventListener("click", () => {
 //FUNCTIONS:
 
 function createCard(cardData) {
-  const newCard = new Card(cardData, "#card-template", () => {
-    imagePreviewModal.open(cardData);
-  });
+  const newCard = new Card(
+    cardData,
+    "#card-template",
+    () => {
+      imagePreviewModal.open(cardData);
+    },
+    (cardId) => {
+      const deleteHiddenInput = document.querySelector("#cardId");
+      deleteHiddenInput.value = cardId;
+      deleteConfirmModal.classList.add(".modal_opened");
+    }
+  );
   return newCard.generateCard();
 }
 
@@ -107,6 +124,7 @@ function handleAddCardFormSubmit(inputValues) {
   api
     .addNewCard(name, link)
     .then((res) => {
+      console.log(res);
       cardsSection.prependItem(createCard(res));
       cardModal.close();
       cardModal.modalForm.reset();
@@ -116,7 +134,11 @@ function handleAddCardFormSubmit(inputValues) {
     });
 }
 
-function handleCardDeleteClick() {}
+function handleDeleteFormSubmit(inputValues) {
+  console.log(inputValues);
+  const cardId = inputValues.name;
+  api.deleteCard(cardId);
+}
 
 //API INSTANTIATION:
 const api = new Api({
@@ -130,7 +152,6 @@ const api = new Api({
 api
   .getInitialCards()
   .then((result) => {
-    console.log(result);
     result.forEach((cardData) => {
       cardsSection.appendItem(createCard(cardData));
     });

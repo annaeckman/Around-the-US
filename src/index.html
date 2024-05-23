@@ -137,7 +137,10 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">Are you sure?</h2>
-        <button disabled type="submit" class="modal__submit-button">Yes</button>
+        <form class="modal__form" id="delete-confirm-form">
+        <input type="hidden" name="cardId" id="cardId" class="modal__input"></input>
+        <button disabled type="submit" class="modal__yes-button">Yes</button>
+      </form>
       </div>
     </div>
 
