@@ -5,20 +5,16 @@ import Section from "../components/Section.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import ModalWithImage from "../components/ModalWithImage.js";
-import Modal from "../components/Modal.js";
+import ModalConfirm from "../components/ModalConfirm.js";
 import Api from "../components/Api.js";
 import {
-  cardListEl,
   profileFormElement,
   addCardFormElement,
   profileEditButton,
   addNewCardButton,
-  profileName,
-  profileJob,
   nameInput,
   jobInput,
   options,
-  initialCards,
 } from "../components/utils/constants.js";
 
 //VALIDATION INSTANTIATION:
@@ -44,10 +40,9 @@ const cardsSection = new Section(
 );
 
 //DELETE MODAL INSTANTIATION:
-const deleteConfirmModal = new ModalWithForm(
-  "#delete-confirm-modal",
-  handleDeleteFormSubmit
-);
+const deleteConfirmModal = new ModalConfirm({
+  modalSelector: "#delete-confirm-modal",
+});
 deleteConfirmModal.setEventListeners();
 
 //PROFILE MODAL INSTANTIATION:
@@ -92,12 +87,14 @@ function createCard(cardData) {
     () => {
       imagePreviewModal.open(cardData);
     },
-    (cardId) => {
-      const deleteHiddenInput = document.querySelector("#cardId");
-      deleteHiddenInput.value = cardId;
-      deleteConfirmModal.classList.add(".modal_opened");
+    (card) => {
+      handleDeleteSubmit(card);
+    },
+    (card) => {
+      handleLikeClick(card);
     }
   );
+
   return newCard.generateCard();
 }
 
@@ -119,12 +116,10 @@ function handleProfileFormSubmit(inputValues) {
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.url;
-  const cardData = { name, link };
 
   api
     .addNewCard(name, link)
     .then((res) => {
-      console.log(res);
       cardsSection.prependItem(createCard(res));
       cardModal.close();
       cardModal.modalForm.reset();
@@ -134,10 +129,46 @@ function handleAddCardFormSubmit(inputValues) {
     });
 }
 
-function handleDeleteFormSubmit(inputValues) {
-  console.log(inputValues);
-  const cardId = inputValues.name;
-  api.deleteCard(cardId);
+function handleDeleteSubmit(card) {
+  console.log(card);
+  deleteConfirmModal.open();
+  deleteConfirmModal.handleDelete(() => {
+    api
+      .deleteCard(card.id)
+      .then(() => {
+        deleteConfirmModal.close();
+        card.handleTrashButton();
+      })
+      .catch((err) => {
+        console.error(err); // log the error to the console
+      });
+  });
+}
+
+function handleLikeClick(card) {
+  console.log(card);
+  if (card.isLiked) {
+    api
+      .dislikeCard(card.id)
+      .then(() => {
+        card.handleLikeButton();
+        card.isLiked = false;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  if (!card.isLiked) {
+    api
+      .likeCard(card.id)
+      .then(() => {
+        card.handleLikeButton();
+        card.isLiked = true;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
 //API INSTANTIATION:
@@ -168,6 +199,7 @@ api
       nameInput: result.name,
       jobInput: result.about,
     });
+    //add a line about user avatar here?
   })
   .catch((err) => {
     console.error(err); // log the error to the console

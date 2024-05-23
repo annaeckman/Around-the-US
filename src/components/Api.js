@@ -58,9 +58,42 @@ export default class Api {
     return fetch(`${this._baseURL}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
+    }).then((res) => {
+      return this._checkPromise(res);
+    });
+  }
+
+  likeCard(cardId) {
+    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    })
+      .then((res) => {
+        return this._checkPromise(res);
+      })
+      .then(() => console.log("Card has been liked"));
+  }
+
+  dislikeCard(cardId) {
+    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((res) => {
+        return this._checkPromise(res);
+      })
+      .then(() => console.log("Card is not yet liked"));
+  }
+
+  updateAvatar(link) {
+    return fetch(`${this._baseURL}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
       body: JSON.stringify({
-        cardId,
+        avatar: link,
       }),
+    }).then((res) => {
+      return this._checkPromise(res);
     });
   }
 }

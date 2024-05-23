@@ -40,6 +40,10 @@
   padding-bottom: 54px;
 }
 
+.modal__delete-heading {
+  padding-bottom: 38px;
+}
+
 .modal__close {
   border: none;
   background-color: transparent;
