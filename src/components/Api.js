@@ -97,17 +97,3 @@ export default class Api {
     });
   }
 }
-
-//this goes into index.js putting it here for reference...
-// const api = new Api({
-//   baseURL: "https://around-api.en.tripleten-services.com/v1",
-//   headers: {
-//     authorization: "ca9ab9de-2f85-4851-84ad-f764b1c60afd",
-//     "Content-Type": "application/json",
-//   },
-// });
-
-// my authorization code for reference:
-// headers: {
-//   authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
-// },

@@ -23,10 +23,9 @@ export default class ModalWithForm extends Modal {
 
   setEventListeners() {
     super.setEventListeners();
-    this.modalForm.addEventListener("submit", () => {
-      // this._modalSubmitButton.textContent = "Saving...";
-      this._handleFormSubmit(this._getInputValues());
-    });
+    this.modalForm.addEventListener("submit", () =>
+      this._handleFormSubmit(this._getInputValues())
+    );
   }
 
   showButtonLoading(text) {
@@ -36,8 +35,4 @@ export default class ModalWithForm extends Modal {
   hideButtonLoading(defaultText) {
     this._modalSubmitButton.textContent = defaultText;
   }
-
-  //add method with arguemnt that includes value that i want it
-  //to change it to that updates the button text(pass true or false if
-  // true say saving if lfalse say default)
 }

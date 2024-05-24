@@ -91,7 +91,6 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 profileAvatarButton.addEventListener("click", () => {
-  console.log("the button was clicked");
   avatarModal.open();
 });
 
@@ -173,7 +172,6 @@ function handleEditAvatarFormSubmit(inputValues) {
 }
 
 function handleDeleteSubmit(card) {
-  console.log(card);
   deleteConfirmModal.open();
   deleteConfirmModal.handleDelete(() => {
     api
@@ -189,7 +187,6 @@ function handleDeleteSubmit(card) {
 }
 
 function handleLikeClick(card) {
-  console.log(card);
   if (card.isLiked) {
     api
       .dislikeCard(card.id)
@@ -243,19 +240,7 @@ api
       jobInput: result.about,
       linkInput: result.avatar,
     });
-    //add a line about user avatar here?
   })
   .catch((err) => {
-    console.error(err); // log the error to the console
+    console.error(err);
   });
-//above is a form for what i need to do for the card and user info...
-
-//on initial page load, call getuserinfo method return object with user's name and avatar and job insert that into dom
-//use userinfo class, modify add a method to set the avatar
-
-//start with the handle functions
-//in the handlers call relevant api function and then when that returns use a .then method, that's when i handle the updates to the user interface
-//for the card, in the .then((in this callback fn is when i take the data from the response, and create a card add it to the dom, in the userinfo insert the values into relevant html elements))
-//likes and deleting is more complicated, i'll prob get it after doing above
-
-//in a real application, you wouldn't log the error to the console, you'd make it accesible to user..that's later
