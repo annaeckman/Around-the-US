@@ -117,6 +117,7 @@ function createCard(cardData) {
 
 function handleProfileFormSubmit(inputValues) {
   //call method that updates button text
+  profileModal.showButtonLoading("Saving...");
   api
     .updateUserInfo(inputValues.name, inputValues.job)
     .then((res) => {
@@ -129,14 +130,16 @@ function handleProfileFormSubmit(inputValues) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      profileModal.hideButtonLoading("Save");
     });
-  profileSubmitButtonElement.textContent = "Save";
 }
 
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.url;
-
+  cardModal.showButtonLoading("Creating...");
   api
     .addNewCard(name, link)
     .then((res) => {
@@ -146,12 +149,15 @@ function handleAddCardFormSubmit(inputValues) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      cardModal.hideButtonLoading("Create");
     });
 }
 
 function handleEditAvatarFormSubmit(inputValues) {
   const link = inputValues.url;
-
+  avatarModal.showButtonLoading("Saving...");
   api
     .updateAvatar(link)
     .then((res) => {
@@ -160,6 +166,9 @@ function handleEditAvatarFormSubmit(inputValues) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      avatarModal.hideButtonLoading("Save");
     });
 }
 

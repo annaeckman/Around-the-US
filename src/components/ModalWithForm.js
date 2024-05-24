@@ -29,8 +29,12 @@ export default class ModalWithForm extends Modal {
     });
   }
 
-  changeButtonText(text) {
-    if
+  showButtonLoading(text) {
+    this._modalSubmitButton.textContent = text;
+  }
+
+  hideButtonLoading(defaultText) {
+    this._modalSubmitButton.textContent = defaultText;
   }
 
   //add method with arguemnt that includes value that i want it
