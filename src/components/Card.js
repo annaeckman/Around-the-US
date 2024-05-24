@@ -25,8 +25,9 @@ export default class Card {
       this._handleLikeClick(this);
     });
 
+    //handler for the delete button on the card
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteClick(this);
+      this._handleDeleteClick(this); //what is this here?
     });
   }
 
@@ -49,6 +50,7 @@ export default class Card {
   }
 
   handleTrashButton() {
+    //removes the card from the DOM
     this._element.remove();
     this._element = null;
   }

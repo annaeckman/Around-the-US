@@ -98,17 +98,14 @@ profileAvatarButton.addEventListener("click", () => {
 
 function createCard(cardData) {
   const newCard = new Card(
-    cardData,
-    "#card-template",
+    cardData, //data
+    "#card-template", //cardSelector
     () => {
+      //handleImageClick
       imagePreviewModal.open(cardData);
     },
-    (card) => {
-      handleDeleteSubmit(card);
-    },
-    (card) => {
-      handleLikeClick(card);
-    }
+    handleDeleteSubmit,
+    handleLikeClick
   );
 
   return newCard.generateCard();
@@ -174,6 +171,7 @@ function handleEditAvatarFormSubmit(inputValues) {
 function handleDeleteSubmit(card) {
   deleteConfirmModal.open();
   deleteConfirmModal.handleDelete(() => {
+    //calls DELETE Method from API
     api
       .deleteCard(card.id)
       .then(() => {
