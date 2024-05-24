@@ -25,6 +25,23 @@
   margin-right: 24px;
 }
 
+.profile__image:hover {
+  opacity: 0.3;
+}
+
+.profile__avatar-button {
+  background: transparent url(../images/pen-edit.svg) center no-repeat;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  object-fit: cover;
+  background-position: center;
+  top: 90px;
+  left: 50px;
+  border: none;
+  z-index: -2;
+}
+
 .profile__edit-button {
   background: transparent url("../images/edit-icon.svg") center no-repeat;
   background-size: 10px 10px;
