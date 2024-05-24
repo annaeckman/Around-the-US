@@ -115,7 +115,7 @@
           />
           <span class="modal__error" id="url-error"></span>
           <button disabled type="submit" class="modal__submit-button">
-            Save
+            Create
           </button>
         </form>
       </div>
@@ -141,22 +141,25 @@
         <form class="modal__form">
           <button class="modal__close"></button>
           <h2 class="modal__heading modal__delete-heading">Are you sure?</h2>
-          <button type="submit" class="modal__yes-button">Yes</button>
+          <button
+            type="submit"
+            class="modal__submit-button modal__submit-avatar-button"
+          >
+            Yes
+          </button>
         </form>
       </div>
     </div>
 
-    <!-- Change Avatar Modal-->
-    <div class="modal" id="change-avatar-modal">
+    <!-- Edit Avatar Modal-->
+    <div class="modal" id="edit-avatar-modal">
       <div class="modal__container">
-        <form class="modal__form">
+        <form class="modal__form" id="edit-avatar-form">
           <button class="modal__close"></button>
-          <h2 class="modal__heading modal__delete-heading">
-            Change profile picture
-          </h2>
+          <h2 class="modal__heading">Change profile picture</h2>
           <input
             name="url"
-            id="avatar-url-input"
+            id="url"
             placeholder="Image URL"
             type="url"
             class="modal__input"
@@ -164,8 +167,10 @@
             minlength="2"
             maxlength="200"
           />
-          <span class="modal__error" id="avatar-link-input-error"></span>
-          <button disabled type="submit" class="modal__yes-button">Save</button>
+          <span class="modal__error" id="url-error"></span>
+          <button disabled type="submit" class="modal__submit-button">
+            Save
+          </button>
         </form>
       </div>
     </div>

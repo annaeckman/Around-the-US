@@ -120,6 +120,10 @@
   margin-top: 8px;
 }
 
+.modal__submit-avatar-button {
+  margin-top: 0px;
+}
+
 .modal__submit-button:not(:disabled):hover {
   opacity: 0.8;
   cursor: pointer;

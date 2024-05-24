@@ -9,6 +9,7 @@ export default class UserInfo {
     this._userInfo = {
       name: this._nameElement.textContent,
       job: this._jobElement.textContent,
+      avatar: this._avatar.src,
     };
     //returns an object containing information about the user
     return this._userInfo;
@@ -19,5 +20,7 @@ export default class UserInfo {
     this._jobElement.textContent = jobInput;
   }
 
-  setUserAvatar() {}
+  setUserAvatar(linkInput) {
+    this._avatar.src = linkInput;
+  }
 }

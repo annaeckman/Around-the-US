@@ -10,7 +10,9 @@ import Api from "../components/Api.js";
 import {
   profileFormElement,
   addCardFormElement,
+  editAvatarFormElement,
   profileEditButton,
+  profileAvatarButton,
   addNewCardButton,
   nameInput,
   jobInput,
@@ -28,6 +30,9 @@ profileFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(options, addCardFormElement);
 addCardFormValidator.enableValidation();
+
+const editAvatarValidator = new FormValidator(options, editAvatarFormElement);
+editAvatarValidator.enableValidation();
 
 //SECTION CLASS INSTANTIATION:
 const cardsSection = new Section(
@@ -52,6 +57,13 @@ profileModal.setEventListeners();
 //NEW CARD MODAL INSTANTIATION:
 const cardModal = new ModalWithForm("#add-card-modal", handleAddCardFormSubmit);
 cardModal.setEventListeners();
+
+//AVATAR EDIT MODAL INSTANTIATION:
+const avatarModal = new ModalWithForm(
+  "#edit-avatar-modal",
+  handleEditAvatarFormSubmit
+);
+avatarModal.setEventListeners();
 
 //MODAL WITH IMAGE INSTANTIATION:
 const imagePreviewModal = new ModalWithImage("#preview-image-modal");
@@ -78,6 +90,11 @@ addNewCardButton.addEventListener("click", () => {
   cardModal.open();
 });
 
+profileAvatarButton.addEventListener("click", () => {
+  console.log("the button was clicked");
+  avatarModal.open();
+});
+
 //FUNCTIONS:
 
 function createCard(cardData) {
@@ -99,9 +116,11 @@ function createCard(cardData) {
 }
 
 function handleProfileFormSubmit(inputValues) {
+  //call method that updates button text
   api
     .updateUserInfo(inputValues.name, inputValues.job)
     .then((res) => {
+      //call method to change back to default here
       userInfo.setUserInfo({
         nameInput: inputValues.name,
         jobInput: inputValues.job,
@@ -109,8 +128,9 @@ function handleProfileFormSubmit(inputValues) {
       profileModal.close();
     })
     .catch((err) => {
-      console.error(err); // log the error to the console
+      console.error(err);
     });
+  profileSubmitButtonElement.textContent = "Save";
 }
 
 function handleAddCardFormSubmit(inputValues) {
@@ -125,7 +145,21 @@ function handleAddCardFormSubmit(inputValues) {
       cardModal.modalForm.reset();
     })
     .catch((err) => {
-      console.error(err); // log the error to the console
+      console.error(err);
+    });
+}
+
+function handleEditAvatarFormSubmit(inputValues) {
+  const link = inputValues.url;
+
+  api
+    .updateAvatar(link)
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar);
+      avatarModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
     });
 }
 
@@ -140,7 +174,7 @@ function handleDeleteSubmit(card) {
         card.handleTrashButton();
       })
       .catch((err) => {
-        console.error(err); // log the error to the console
+        console.error(err);
       });
   });
 }
@@ -198,6 +232,7 @@ api
     userInfo.setUserInfo({
       nameInput: result.name,
       jobInput: result.about,
+      linkInput: result.avatar,
     });
     //add a line about user avatar here?
   })

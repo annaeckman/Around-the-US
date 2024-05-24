@@ -16,31 +16,44 @@
   justify-items: start;
 }
 
+.profile__avatar-container {
+  position: relative;
+  margin-right: 24px;
+}
+
+.profile__avatar-container:hover .profile__avatar-button {
+  visibility: visible;
+}
+
 .profile__image {
   height: 120px;
   width: 120px;
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
-  margin-right: 24px;
 }
 
-.profile__image:hover {
+.profile__avatar-container:hover .profile__image:hover {
   opacity: 0.3;
 }
 
 .profile__avatar-button {
   background: transparent url(../images/pen-edit.svg) center no-repeat;
-  width: 26px;
-  height: 26px;
+  width: 120px;
+  height: 120px;
   position: absolute;
-  object-fit: cover;
   background-position: center;
-  top: 90px;
-  left: 50px;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  border-radius: 50px;
   border: none;
-  z-index: -2;
+  visibility: hidden;
 }
+
+/* .profile__avatar-button:hover {
+  opacity: 1;
+} */
 
 .profile__edit-button {
   background: transparent url("../images/edit-icon.svg") center no-repeat;
