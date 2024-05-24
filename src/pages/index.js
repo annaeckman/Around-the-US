@@ -5,7 +5,7 @@ import Section from "../components/Section.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import ModalWithImage from "../components/ModalWithImage.js";
-import ModalConfirm from "../components/ModalConfirm.js";
+import ModalConfirm from "../components/ModalWithConfirm.js";
 import Api from "../components/Api.js";
 import {
   profileFormElement,
