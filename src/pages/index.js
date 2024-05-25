@@ -235,7 +235,7 @@ api
       nameInput: result.name,
       jobInput: result.about,
     });
-    userInfo.setUserAvatar({ linkInput: result.avatar });
+    userInfo.setUserAvatar(result.avatar);
   })
   .catch((err) => {
     console.error(err);
