@@ -109,45 +109,65 @@ function createCard(cardData) {
   return newCard.generateCard();
 }
 
-function handleProfileFormSubmit(inputValues) {
-  //call method that updates button text
-  profileModal.showButtonLoading("Saving...");
-  api
-    .updateUserInfo(inputValues.name, inputValues.job)
-    .then((res) => {
-      //call method to change back to default here
-      userInfo.setUserInfo({
-        nameInput: inputValues.name,
-        jobInput: inputValues.job,
-      });
-      profileModal.close();
+function handleSubmit(request, modalInstance, loadingText = "Saving...") {
+  //change button text:
+  modalInstance.renderLoading(true, loadingText);
+  request()
+    .then(() => {
+      modalInstance.close();
     })
     .catch((err) => {
       console.error(err);
     })
     .finally(() => {
-      profileModal.hideButtonLoading("Save");
+      modalInstance.renderLoading(false);
     });
 }
 
-function handleAddCardFormSubmit(inputValues) {
-  const name = inputValues.title;
-  const link = inputValues.url;
-  cardModal.showButtonLoading("Creating...");
-  api
-    .addNewCard(name, link)
-    .then((res) => {
-      cardsSection.prependItem(createCard(res));
-      cardModal.close();
-      cardModal.modalForm.reset();
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-    .finally(() => {
-      cardModal.hideButtonLoading("Create");
-    });
+function handleProfileFormSubmit(inputValues) {
+  // we create a function that returns a promise
+  function makeRequest() {
+    // `return` lets us use a promise chain `then, catch, finally` inside `handleSubmit`
+    return api
+      .updateUserInfo(inputValues.name, inputValues.job)
+      .then((userData) => {
+        userInfo.setUserInfo({
+          nameInput: inputValues.name,
+          jobInput: inputValues.job,
+        });
+      });
+  }
+  // Here we call the function passing the request, popup instance and if we need some other loading text we can pass it as the 3rd argument
+  handleSubmit(makeRequest, profileModal);
 }
+
+function handleAddCardFormSubmit(inputValues) {
+  console.log(inputValues);
+  function makeRequest() {
+    return api.addNewCard(inputValues.title, inputValues.url).then((res) => {
+      cardsSection.prependItem(createCard(res));
+      cardModal.modalForm.reset();
+    });
+  }
+  handleSubmit(makeRequest, cardModal, "Creating...");
+}
+
+// function handleAddCardFormSubmit(inputValues) {
+//   const name = inputValues.title;
+//   const link = inputValues.url;
+//   cardModal.showButtonLoading("Creating...");
+//   api
+//     .addNewCard(name, link)
+//     .then((res) => {
+//       cardsSection.prependItem(createCard(res));
+//       cardModal.close();
+//       cardModal.modalForm.reset();
+//     })
+//     .catch(console.error)
+//     .finally(() => {
+//       cardModal.hideButtonLoading("Create");
+//     });
+// }
 
 function handleEditAvatarFormSubmit(inputValues) {
   const link = inputValues.url;
@@ -156,7 +176,7 @@ function handleEditAvatarFormSubmit(inputValues) {
     .updateAvatar(link)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
-      editAvatarValidator._disableButton();
+      editAvatarValidator.disableButton();
       avatarModal.close();
     })
     .catch((err) => {
@@ -230,7 +250,6 @@ api
 api
   .getUserInfo()
   .then((result) => {
-    console.log(result);
     userInfo.setUserInfo({
       nameInput: result.name,
       jobInput: result.about,

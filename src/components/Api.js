@@ -4,6 +4,10 @@ export default class Api {
     this._headers = headers;
   }
 
+  _request(url, options) {
+    return fetch(`${url} + ${options}`).then(this._checkPromise);
+  }
+
   _checkPromise(res) {
     if (res.ok) {
       return res.json();
@@ -19,6 +23,10 @@ export default class Api {
       return this._checkPromise(res);
     });
   }
+
+  // getInitialCards() {
+  //   return this._request(this._baseURL, "/cards");
+  // }
 
   getUserInfo() {
     return fetch(`${this._baseURL}/users/me`, {
