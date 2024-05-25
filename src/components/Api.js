@@ -23,9 +23,11 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._baseURL}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      return this._checkPromise(res);
-    });
+    })
+      .then(this._checkPromise)
+      .then((userData) => {
+        return userData;
+      });
   }
 
   updateUserInfo(name, about) {
@@ -93,6 +95,7 @@ export default class Api {
         avatar: link,
       }),
     }).then((res) => {
+      console.log("this PATCH is working");
       return this._checkPromise(res);
     });
   }

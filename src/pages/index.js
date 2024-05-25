@@ -156,6 +156,7 @@ function handleEditAvatarFormSubmit(inputValues) {
     .updateAvatar(link)
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
+      editAvatarValidator._disableButton();
       avatarModal.close();
     })
     .catch((err) => {
@@ -183,7 +184,7 @@ function handleDeleteSubmit(card) {
 }
 
 function handleLikeClick(card) {
-  if (card.isLiked) {
+  if (card._isLiked) {
     api
       .dislikeCard(card.id)
       .then(() => {
@@ -193,7 +194,7 @@ function handleLikeClick(card) {
         console.error(err);
       });
   }
-  if (!card.isLiked) {
+  if (!card._isLiked) {
     api
       .likeCard(card.id)
       .then(() => {
@@ -229,11 +230,12 @@ api
 api
   .getUserInfo()
   .then((result) => {
+    console.log(result);
     userInfo.setUserInfo({
       nameInput: result.name,
       jobInput: result.about,
-      linkInput: result.avatar,
     });
+    userInfo.setUserAvatar({ linkInput: result.avatar });
   })
   .catch((err) => {
     console.error(err);
