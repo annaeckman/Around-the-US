@@ -37,9 +37,7 @@ editAvatarValidator.enableValidation();
 //SECTION CLASS INSTANTIATION:
 const cardsSection = new Section(
   {
-    renderer: (cardData) => {
-      cardsSection.appendItem(createCard(cardData));
-    },
+    renderer: createCard,
   },
   ".cards__list"
 );
@@ -190,7 +188,6 @@ function handleLikeClick(card) {
       .dislikeCard(card.id)
       .then(() => {
         card.handleLikeButton();
-        card.isLiked = false;
       })
       .catch((err) => {
         console.error(err);
@@ -201,7 +198,6 @@ function handleLikeClick(card) {
       .likeCard(card.id)
       .then(() => {
         card.handleLikeButton();
-        card.isLiked = true;
       })
       .catch((err) => {
         console.error(err);

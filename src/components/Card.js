@@ -14,6 +14,7 @@ export default class Card {
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._cardElement = document.querySelector(cardSelector);
+    this._isLiked = data.isLiked;
   }
 
   _setEventListeners() {
@@ -45,7 +46,12 @@ export default class Card {
     this._cardImage.alt = this._name;
     this._cardTitle.textContent = this._name;
 
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__heart-button_clicked");
+    }
+
     this._setEventListeners();
+
     return this._element;
   }
 
@@ -57,5 +63,6 @@ export default class Card {
 
   handleLikeButton() {
     this._likeButton.classList.toggle("card__heart-button_clicked");
+    this._isLiked = !this._isLiked;
   }
 }
