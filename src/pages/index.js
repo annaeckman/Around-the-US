@@ -8,9 +8,6 @@ import ModalWithImage from "../components/ModalWithImage.js";
 import ModalConfirm from "../components/ModalWithConfirm.js";
 import Api from "../components/Api.js";
 import {
-  profileFormElement,
-  addCardFormElement,
-  editAvatarFormElement,
   profileEditButton,
   profileAvatarButton,
   addNewCardButton,
@@ -19,20 +16,53 @@ import {
   options,
 } from "../components/utils/constants.js";
 
+//API INSTANTIATION:
+const api = new Api({
+  baseURL: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "ca9ab9de-2f85-4851-84ad-f764b1c60afd",
+    "Content-Type": "application/json",
+  },
+});
+
+//initial cards uploading to DOM
+api
+  .getInitialCards()
+  .then((result) => {
+    result.forEach((cardData) => {
+      cardsSection.appendItem(createCard(cardData));
+    });
+  })
+  .catch(console.error);
+
+//initial user info from server and uploading to DOM
+api
+  .getUserInfo()
+  .then((result) => {
+    userInfo.setUserInfo({
+      nameInput: result.name,
+      jobInput: result.about,
+    });
+    userInfo.setUserAvatar(result.avatar);
+  })
+  .catch(console.error);
+
 //VALIDATION INSTANTIATION:
 
-const profileFormValidator = new FormValidator(options, profileFormElement);
-profileFormValidator.enableValidation();
-//use profileModal.modalForm here in order to not search the form?
-//const profileFormValidator = new FormValidator(options, profileModal.modalForm);
-//tried above and it did not work...still need to troubleshoot.
-//same for below:
+const formValidators = {};
 
-const addCardFormValidator = new FormValidator(options, addCardFormElement);
-addCardFormValidator.enableValidation();
+const enableValidation = (options) => {
+  const formList = Array.from(document.querySelectorAll(options.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(options, formElement);
+    const formName = formElement.getAttribute("name");
 
-const editAvatarValidator = new FormValidator(options, editAvatarFormElement);
-editAvatarValidator.enableValidation();
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(options);
 
 //SECTION CLASS INSTANTIATION:
 const cardsSection = new Section(
@@ -81,7 +111,7 @@ profileEditButton.addEventListener("click", () => {
   jobInput.value = currentUser.job;
 
   profileModal.open();
-  profileFormValidator.resetValidation();
+  formValidators["edit-profile-form"].resetValidation();
 });
 
 addNewCardButton.addEventListener("click", () => {
@@ -142,7 +172,6 @@ function handleProfileFormSubmit(inputValues) {
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  console.log(inputValues);
   function makeRequest() {
     return api.addNewCard(inputValues.title, inputValues.url).then((res) => {
       cardsSection.prependItem(createCard(res));
@@ -152,39 +181,14 @@ function handleAddCardFormSubmit(inputValues) {
   handleSubmit(makeRequest, cardModal, "Creating...");
 }
 
-// function handleAddCardFormSubmit(inputValues) {
-//   const name = inputValues.title;
-//   const link = inputValues.url;
-//   cardModal.showButtonLoading("Creating...");
-//   api
-//     .addNewCard(name, link)
-//     .then((res) => {
-//       cardsSection.prependItem(createCard(res));
-//       cardModal.close();
-//       cardModal.modalForm.reset();
-//     })
-//     .catch(console.error)
-//     .finally(() => {
-//       cardModal.hideButtonLoading("Create");
-//     });
-// }
-
 function handleEditAvatarFormSubmit(inputValues) {
-  const link = inputValues.url;
-  avatarModal.showButtonLoading("Saving...");
-  api
-    .updateAvatar(link)
-    .then((res) => {
+  function makeRequest() {
+    return api.updateAvatar(inputValues.url).then((res) => {
       userInfo.setUserAvatar(res.avatar);
       editAvatarValidator.disableButton();
-      avatarModal.close();
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-    .finally(() => {
-      avatarModal.hideButtonLoading("Save");
     });
+  }
+  handleSubmit(makeRequest, avatarModal);
 }
 
 function handleDeleteSubmit(card) {
@@ -197,65 +201,25 @@ function handleDeleteSubmit(card) {
         deleteConfirmModal.close();
         card.handleTrashButton();
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   });
 }
 
 function handleLikeClick(card) {
-  if (card._isLiked) {
+  if (card.isLiked) {
     api
       .dislikeCard(card.id)
       .then(() => {
         card.handleLikeButton();
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   }
-  if (!card._isLiked) {
+  if (!card.isLiked) {
     api
       .likeCard(card.id)
       .then(() => {
         card.handleLikeButton();
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   }
 }
-
-//API INSTANTIATION:
-const api = new Api({
-  baseURL: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "ca9ab9de-2f85-4851-84ad-f764b1c60afd",
-    "Content-Type": "application/json",
-  },
-});
-
-api
-  .getInitialCards()
-  .then((result) => {
-    result.forEach((cardData) => {
-      cardsSection.appendItem(createCard(cardData));
-    });
-  })
-  .catch((err) => {
-    console.error(err); // log the error to the console
-  });
-
-//initial user info from server and uploading to DOM
-api
-  .getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo({
-      nameInput: result.name,
-      jobInput: result.about,
-    });
-    userInfo.setUserAvatar(result.avatar);
-  })
-  .catch((err) => {
-    console.error(err);
-  });

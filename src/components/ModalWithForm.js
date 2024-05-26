@@ -36,14 +36,6 @@ export default class ModalWithForm extends Modal {
     );
   }
 
-  // showButtonLoading(text) {
-  //   this._modalSubmitButton.textContent = text;
-  // }
-
-  // hideButtonLoading(defaultText) {
-  //   this._modalSubmitButton.textContent = defaultText;
-  // }
-
   renderLoading(isLoading, loadingText = "Saving...") {
     if (isLoading) {
       this._modalSubmitButton.textContent = loadingText;

@@ -1,8 +1,5 @@
 //Wrappers:
 export const cardListEl = document.querySelector(".cards__list");
-export const profileFormElement = document.forms["edit-profile-form"];
-export const addCardFormElement = document.forms["add-card-form"];
-export const editAvatarFormElement = document.forms["edit-avatar-form"];
 
 //
 //Buttons and Nodes:

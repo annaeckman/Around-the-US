@@ -14,7 +14,7 @@ export default class Card {
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._cardElement = document.querySelector(cardSelector);
-    this._isLiked = data.isLiked;
+    this.isLiked = data.isLiked;
   }
 
   _setEventListeners() {

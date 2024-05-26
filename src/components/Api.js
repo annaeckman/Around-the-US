@@ -5,7 +5,9 @@ export default class Api {
   }
 
   _request(url, options) {
-    return fetch(`${url} + ${options}`).then(this._checkPromise);
+    return fetch(`${url}${options}`, { headers: this._headers }).then(
+      this._checkPromise
+    );
   }
 
   _checkPromise(res) {
@@ -17,27 +19,13 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._baseURL}/cards`, {
-      headers: this._headers,
-    }).then((res) => {
-      return this._checkPromise(res);
-    });
+    return this._request(this._baseURL, "/cards");
   }
 
-  // getInitialCards() {
-  //   return this._request(this._baseURL, "/cards");
-  // }
-
   getUserInfo() {
-    return fetch(`${this._baseURL}/users/me`, {
-      headers: this._headers,
-    })
-      .then((res) => {
-        return this._checkPromise(res);
-      })
-      .then((userData) => {
-        return userData;
-      });
+    return this._request(this._baseURL, "/users/me").then((userData) => {
+      return userData;
+    });
   }
 
   updateUserInfo(name, about) {
@@ -48,9 +36,7 @@ export default class Api {
         name,
         about,
       }),
-    }).then((res) => {
-      return this._checkPromise(res);
-    });
+    }).then(this._checkPromise);
   }
 
   addNewCard(name, link) {
@@ -61,18 +47,14 @@ export default class Api {
         name,
         link,
       }),
-    }).then((res) => {
-      return this._checkPromise(res);
-    });
+    }).then(this._checkPromise);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseURL}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      return this._checkPromise(res);
-    });
+    }).then(this._checkPromise);
   }
 
   likeCard(cardId) {
@@ -80,9 +62,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers,
     })
-      .then((res) => {
-        return this._checkPromise(res);
-      })
+      .then(this._checkPromise)
       .then(() => console.log("Card has been liked"));
   }
 
@@ -91,9 +71,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        return this._checkPromise(res);
-      })
+      .then(this._checkPromise)
       .then(() => console.log("Card is not yet liked"));
   }
 
@@ -104,9 +82,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: link,
       }),
-    }).then((res) => {
-      console.log("this PATCH is working");
-      return this._checkPromise(res);
-    });
+    }).then(this._checkPromise);
   }
 }

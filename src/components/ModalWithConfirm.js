@@ -14,7 +14,6 @@ export default class ModalConfirm extends Modal {
     this._modalForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleDeleteSubmit();
-      this.close();
     });
     super.setEventListeners();
   }
