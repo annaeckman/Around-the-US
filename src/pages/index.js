@@ -175,7 +175,7 @@ function handleAddCardFormSubmit(inputValues) {
   function makeRequest() {
     return api.addNewCard(inputValues.title, inputValues.url).then((res) => {
       cardsSection.prependItem(createCard(res));
-      cardModal.modalForm.reset();
+      cardModal.resetFormAndDisableButton();
     });
   }
   handleSubmit(makeRequest, cardModal, "Creating...");
@@ -185,7 +185,7 @@ function handleEditAvatarFormSubmit(inputValues) {
   function makeRequest() {
     return api.updateAvatar(inputValues.url).then((res) => {
       userInfo.setUserAvatar(res.avatar);
-      editAvatarValidator.disableButton();
+      formValidators["edit-avatar-form"].disableButton();
     });
   }
   handleSubmit(makeRequest, avatarModal);

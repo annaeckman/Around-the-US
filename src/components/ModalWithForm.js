@@ -14,6 +14,11 @@ export default class ModalWithForm extends Modal {
     this._submitButtonText = this._modalSubmitButton.textContent;
   }
 
+  resetFormAndDisableButton() {
+    this.modalForm.reset();
+    this._modalSubmitButton.disabled = true;
+  }
+
   _getInputValues() {
     const inputValues = {};
     this._inputElements.forEach((input) => {
