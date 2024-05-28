@@ -55,7 +55,7 @@ export default class Card {
     return this._element;
   }
 
-  handleTrashButton() {
+  removeCardElement() {
     //removes the card from the DOM
     this._element.remove();
     this._element = null;

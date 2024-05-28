@@ -6,7 +6,8 @@ export default class ModalConfirm extends Modal {
     this._modalForm = this._modalElement.querySelector(".modal__form");
   }
 
-  handleDelete(handleDeleteSubmit) {
+  //this fn makes this a less generalized class
+  setHandleDeleteMethod(handleDeleteSubmit) {
     this._handleDeleteSubmit = handleDeleteSubmit;
   }
 

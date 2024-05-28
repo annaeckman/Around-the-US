@@ -133,7 +133,7 @@ function createCard(cardData) {
       //handleImageClick
       imagePreviewModal.open(cardData);
     },
-    handleDeleteSubmit,
+    handleOpenDeleteModal,
     handleLikeClick
   );
 
@@ -176,7 +176,8 @@ function handleAddCardFormSubmit(inputValues) {
   function makeRequest() {
     return api.addNewCard(inputValues.title, inputValues.url).then((res) => {
       cardsSection.prependItem(createCard(res));
-      cardModal.resetFormAndDisableButton();
+      cardModal.resetForm(); // reset the form
+      formValidators["add-card-form"].disableButton(); // disalbe the button
     });
   }
   handleSubmit(makeRequest, cardModal, "Creating...");
@@ -192,21 +193,20 @@ function handleEditAvatarFormSubmit(inputValues) {
   handleSubmit(makeRequest, avatarModal);
 }
 
-function handleDeleteSubmit(card) {
+function handleOpenDeleteModal(card) {
   deleteConfirmModal.open();
-  deleteConfirmModal.handleDelete(() => {
+  deleteConfirmModal.setHandleDeleteMethod(() => {
     //calls DELETE Method from API
     api
       .deleteCard(card.id)
       .then(() => {
         deleteConfirmModal.close();
-        card.handleTrashButton();
+        card.removeCardElement();
       })
       .catch(console.error);
   });
 }
 
-//something is off with this...
 function handleLikeClick(card) {
   if (card.isLiked) {
     api

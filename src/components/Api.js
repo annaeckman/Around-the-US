@@ -29,71 +29,55 @@ export default class Api {
   }
 
   updateUserInfo(name, about) {
-    return fetch(`${this._baseURL}/users/me`, {
+    return this._request(`${this._baseURL}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name,
         about,
       }),
-    }).then(this._checkPromise);
+    });
   }
 
-  //this doesn't work...have not been able to debug yet//
-  // updateUserInfo(name, about) {
-  //   return this._request(`${this._baseURL}/users/me`, {
-  //     method: "PATCH",
-  //     headers: this._headers,
-  //     body: JSON.stringify({
-  //       name,
-  //       about,
-  //     }),
-  //   }).then(this._checkPromise);
-  // }
-
   addNewCard(name, link) {
-    return fetch(`${this._baseURL}/cards`, {
+    return this._request(`${this._baseURL}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name,
         link,
       }),
-    }).then(this._checkPromise);
+    });
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseURL}/cards/${cardId}`, {
+    return this._request(`${this._baseURL}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._checkPromise);
+    });
   }
 
   likeCard(cardId) {
-    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
+    return this._request(`${this._baseURL}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    })
-      .then(this._checkPromise)
-      .then(() => console.log("Card has been liked"));
+    }).then(() => console.log("Card has been liked"));
   }
 
   dislikeCard(cardId) {
-    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
+    return this._request(`${this._baseURL}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkPromise)
-      .then(() => console.log("Card is not yet liked"));
+    }).then(() => console.log("Card is not yet liked"));
   }
 
   updateAvatar(link) {
-    return fetch(`${this._baseURL}/users/me/avatar`, {
+    return this._request(`${this._baseURL}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         avatar: link,
       }),
-    }).then(this._checkPromise);
+    });
   }
 }

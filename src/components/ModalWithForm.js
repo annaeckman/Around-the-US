@@ -14,9 +14,8 @@ export default class ModalWithForm extends Modal {
     this._submitButtonText = this._modalSubmitButton.textContent;
   }
 
-  resetFormAndDisableButton() {
+  resetForm() {
     this.modalForm.reset();
-    this._modalSubmitButton.disabled = true;
   }
 
   _getInputValues() {
