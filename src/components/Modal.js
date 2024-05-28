@@ -24,7 +24,7 @@ export default class Modal {
   _closeModalOverlay = (evt) => {
     if (evt.target === evt.currentTarget) {
       this.close();
-      //this needs to be an arrow function bc it uses this...read max's article...
+      //this needs to be an arrow function bc it uses this...
     }
   };
 

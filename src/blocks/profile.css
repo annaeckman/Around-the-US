@@ -16,13 +16,41 @@
   justify-items: start;
 }
 
+.profile__avatar-container {
+  position: relative;
+  margin-right: 24px;
+}
+
+.profile__avatar-container:hover .profile__image {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.profile__avatar-container:hover .profile__avatar-button {
+  visibility: visible;
+}
+
 .profile__image {
   height: 120px;
   width: 120px;
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
-  margin-right: 24px;
+  transition: opacity 0.35s;
+}
+
+.profile__avatar-button {
+  background: transparent url(../images/pen-edit.svg) center no-repeat;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  background-position: center;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  border-radius: 50px;
+  border: none;
+  visibility: hidden;
 }
 
 .profile__edit-button {

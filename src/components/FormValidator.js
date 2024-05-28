@@ -41,7 +41,6 @@ export default class FormValidator {
     this._hideInputError(inputElement);
   }
 
-  //add a reset Validation function...
   resetValidation() {
     this._toggleButtonState(); // controlling the submit button ==
 
@@ -50,13 +49,13 @@ export default class FormValidator {
     });
   }
 
-  _disableButton() {
+  disableButton() {
     this._submitButton.disabled = true;
   }
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._disableButton();
+      this.disableButton();
       return;
     }
     this._submitButton.disabled = false;
@@ -71,8 +70,6 @@ export default class FormValidator {
   _setEventListeners() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-
-      this._disableButton();
     });
 
     this._inputElements.forEach((inputElement) => {

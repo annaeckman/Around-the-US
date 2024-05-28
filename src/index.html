@@ -21,11 +21,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__image"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="smiling Jacques in a red hat"
-          />
+          <div class="profile__avatar-container">
+            <img
+              class="profile__image"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="smiling Jacques in a red hat"
+            />
+            <button class="profile__avatar-button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button
@@ -55,7 +58,11 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">Edit profile</h2>
-        <form class="modal__form" id="edit-profile-form">
+        <form
+          name="edit-profile-form"
+          class="modal__form"
+          id="edit-profile-form"
+        >
           <input
             name="name"
             id="name"
@@ -90,14 +97,14 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">New place</h2>
-        <form class="modal__form" id="add-card-form">
+        <form name="add-card-form" class="modal__form" id="add-card-form">
           <input
             name="title"
             id="title"
             type="text"
             placeholder="Title"
             class="modal__input"
-            minlength="1"
+            minlength="2"
             maxlength="30"
             required
           />
@@ -112,7 +119,7 @@
           />
           <span class="modal__error" id="url-error"></span>
           <button disabled type="submit" class="modal__submit-button">
-            Save
+            Create
           </button>
         </form>
       </div>
@@ -128,6 +135,47 @@
         ></button>
         <img src="" alt="" class="modal__image-preview" />
         <p class="modal__picture-subtitle"></p>
+      </div>
+    </div>
+
+    <!-- Delete Card Confirm Modal-->
+
+    <div class="modal" id="delete-confirm-modal">
+      <div class="modal__container modal__delete-container">
+        <button class="modal__close"></button>
+        <form name="delete-confirm-form" class="modal__form">
+          <h2 class="modal__heading modal__delete-heading">Are you sure?</h2>
+          <button
+            type="submit"
+            class="modal__submit-button modal__submit-avatar-button"
+          >
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Avatar Modal-->
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container">
+        <form name="edit-avatar-form" class="modal__form" id="edit-avatar-form">
+          <button class="modal__close"></button>
+          <h2 class="modal__heading">Change profile picture</h2>
+          <input
+            name="url"
+            id="url"
+            placeholder="Image URL"
+            type="url"
+            class="modal__input"
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span class="modal__error" id="url-error"></span>
+          <button disabled type="submit" class="modal__submit-button">
+            Save
+          </button>
+        </form>
       </div>
     </div>
 
