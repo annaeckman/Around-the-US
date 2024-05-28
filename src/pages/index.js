@@ -115,6 +115,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addNewCardButton.addEventListener("click", () => {
+  // formValidators["add-card-form"].disableButton();
   cardModal.open();
 });
 
@@ -205,6 +206,7 @@ function handleDeleteSubmit(card) {
   });
 }
 
+//something is off with this...
 function handleLikeClick(card) {
   if (card.isLiked) {
     api

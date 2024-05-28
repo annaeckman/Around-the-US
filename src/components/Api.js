@@ -5,9 +5,7 @@ export default class Api {
   }
 
   _request(url, options) {
-    return fetch(`${url}${options}`, { headers: this._headers }).then(
-      this._checkPromise
-    );
+    return fetch(url, options).then(this._checkPromise);
   }
 
   _checkPromise(res) {
@@ -19,11 +17,13 @@ export default class Api {
   }
 
   getInitialCards() {
-    return this._request(this._baseURL, "/cards");
+    return this._request(`${this._baseURL}/cards`, { headers: this._headers });
   }
 
   getUserInfo() {
-    return this._request(this._baseURL, "/users/me").then((userData) => {
+    return this._request(`${this._baseURL}/users/me`, {
+      headers: this._headers,
+    }).then((userData) => {
       return userData;
     });
   }
@@ -38,6 +38,18 @@ export default class Api {
       }),
     }).then(this._checkPromise);
   }
+
+  //this doesn't work...have not been able to debug yet//
+  // updateUserInfo(name, about) {
+  //   return this._request(`${this._baseURL}/users/me`, {
+  //     method: "PATCH",
+  //     headers: this._headers,
+  //     body: JSON.stringify({
+  //       name,
+  //       about,
+  //     }),
+  //   }).then(this._checkPromise);
+  // }
 
   addNewCard(name, link) {
     return fetch(`${this._baseURL}/cards`, {
