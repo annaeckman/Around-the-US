@@ -23,19 +23,16 @@ This project is made so all elements are displayed correctly on popular screen s
 - Vectors, fonts, user interfaces
 - Responsive design principles
 - JS Form Validation with dynamic buttons
+- JS Class Implementation
 - UX updates with multiple user options for closing modals
 
 ### Figma
 
 [link to Figma Project](https://www.figma.com/file/Es8zZP3ARGH9JGcw60i3OD/Sprint-3_-Around-the-US?type=design&node-id=0-1&mode=design&t=u0tUkTgrYBe53iaH-0)
-[form validation figma design](https://www.figma.com/file/N3zUeequnpvMX807FfYAZW/Sprint-6-Around-The-U.S.?type=design&node-id=0-1&mode=design&t=4yVbF5EURdIkyySl-0)
 
 ### Screenshots/Video
 
-[link to video showcasing project and its features](https://drive.google.com/file/d/1APJIe5RYPiYJhLx6N5WdTqpIoV4k_Yzt/view?usp=sharing)
-
-[video with JS validation and UX updates](https://app.screencastify.com/v3/watch/WTLE1OVFQnZ5XAr4Tq8x)
-[video with challenges faced with updates](https://drive.google.com/file/d/1QpDf0LP_n6if6Kp_Gie-M4GP5Da13B_U/view?usp=drive_link)
+[link to video showcasing project and its features](https://www.loom.com/share/597bbbebc0dd4264af861d3c4dde6e39?sid=f853ae2d-61f0-4827-9c7e-709456b4dd55)
 
 ![Alt text](./src/images/image.png)
 ![Alt text](./src/images/image-2.png)
@@ -43,4 +40,4 @@ This project is made so all elements are displayed correctly on popular screen s
 
 ### Technologies Used
 
-- HTML5, CSS, BEM, JS
+- HTML5, CSS, BEM, JS, Figma
