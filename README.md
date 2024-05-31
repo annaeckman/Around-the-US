@@ -32,10 +32,8 @@ This project is made so all elements are displayed correctly on popular screen s
 
 ### Screenshots/Video
 
-[link to video showcasing project and its features](https://drive.google.com/file/d/1APJIe5RYPiYJhLx6N5WdTqpIoV4k_Yzt/view?usp=sharing)
+[link to video showcasing project and its features](https://www.loom.com/share/597bbbebc0dd4264af861d3c4dde6e39?sid=0f1b734d-a2ca-4d81-9b11-d01a4f01d5a9)
 
-[video with JS validation and UX updates](https://app.screencastify.com/v3/watch/WTLE1OVFQnZ5XAr4Tq8x)
-[video with challenges faced with updates](https://drive.google.com/file/d/1QpDf0LP_n6if6Kp_Gie-M4GP5Da13B_U/view?usp=drive_link)
 
 ![Alt text](./src/images/image.png)
 ![Alt text](./src/images/image-2.png)
