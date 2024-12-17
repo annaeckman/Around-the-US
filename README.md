@@ -11,7 +11,7 @@
 
 ### Published Link
 
-[link to project](http://annaeckman.github.io/se_project_aroundtheus)
+[link to project](https://annaeckman.github.io/Around-the-US/)
 
 ### Project Description
 
